@@ -1,9 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\crypto_technicaL_analysis",
+    "\\home\\templates\\home",
     "\\templates"
   ],
-  "SelectedNode": "\\crypto_technicaL_analysis\\settings.py",
+  "SelectedNode": "\\templates\\base.html",
   "PreviewInSolutionExplorer": false
 }
