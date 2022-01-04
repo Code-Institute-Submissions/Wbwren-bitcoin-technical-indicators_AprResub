@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models.fields import DecimalField
+from django.utils.translation import gettext as _
 
 # Create your models here.
 class Metric(models.Model):
@@ -13,3 +14,12 @@ class Metric(models.Model):
 
     def get_friendly_name(self):
         return self.friendly_name
+
+
+class Bitcoin_Price_Data(models.Model):
+    date = models.DateField(_("date"))
+    open = models.FloatField(_("open"))
+    price = models.FloatField(_("price"))
+    high = models.FloatField(_("high"))
+    low = models.FloatField(_("low"))
+

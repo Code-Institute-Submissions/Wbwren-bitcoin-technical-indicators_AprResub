@@ -2,10 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\crypto_technicaL_analysis",
-    "\\metrics",
-    "\\static\\css",
-    "\\templates\\allauth\\account\\email"
+    "\\metrics"
   ],
-  "SelectedNode": "\\crypto_technicaL_analysis\\settings.py",
+  "SelectedNode": "\\db.sqlite3",
   "PreviewInSolutionExplorer": false
 }
