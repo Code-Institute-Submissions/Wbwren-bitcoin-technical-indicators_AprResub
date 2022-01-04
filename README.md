@@ -12,3 +12,4 @@
     .\sqlite3.exe metrics_bitcoin_price_data
     .mode csv
     .import btc_price_data.csv metrics_bitcoin_price_data
+
