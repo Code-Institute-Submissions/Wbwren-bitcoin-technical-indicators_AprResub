@@ -45,13 +45,8 @@
               <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
                   <ul class="list-inline list-unstyled text-center text-lg-right my-0">
                       {% if request.user.is_authenticated %}
-                      <li class="list-inline-item dropdown">
-                          <a class="text-black nav-link" href="">
-                              <div class="text-center">
-                                  <div><i class="fas fa-edit fa-lg"></i></div>
-                                  <p class="my-0">Edit Price Data</p>
-                              </div>
-                          </a>
+                      <li class="list-inline-item">
+                        <a href="{% url 'metrics' %}">Metrics</a>
                       </li>
                       {% endif %}
                       <li class="list-inline-item dropdown">
@@ -64,7 +59,7 @@
                           <div class="dropdown-menu border-0" aria-labelledby="user-options">
                               {% if request.user.is_authenticated %}
                               {% if request.user.is_superuser %}
-                              <a href="" class="dropdown-item">Product Management</a>
+                              <a href="" class="dropdown-item">Edit Price Data</a>
                               {% endif %}
                               <a href="" class="dropdown-item">My Profile</a>
                               <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
@@ -75,18 +70,7 @@
                           </div>
                       </li>
                       <li class="list-inline-item">
-                          <a class="{% if total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="{% url 'view_bag' %}">
-                              <div class="text-center">
-                                  <div><i class="fas fa-shopping-bag fa-lg"></i></div>
-                                  <p class="my-0">
-                                      {% if total %}
-                                      ${{ total }}
-                                      {% else %}
-                                      $0.00
-                                      {% endif %}
-                                  </p>
-                              </div>
-                          </a>
+                          <a href="{% url 'view_bag' %}">Purchase Premium Access</a>
                       </li>
                   </ul>
               </div>

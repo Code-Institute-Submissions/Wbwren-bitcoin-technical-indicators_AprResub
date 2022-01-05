@@ -13,3 +13,6 @@
     .mode csv
     .import btc_price_data.csv metrics_bitcoin_price_data
 
+
+
+Super user can edit bitcoin price data undert the account section in nav
