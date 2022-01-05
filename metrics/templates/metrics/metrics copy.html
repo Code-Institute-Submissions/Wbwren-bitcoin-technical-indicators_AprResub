@@ -1,42 +1,8 @@
-{% extends "base.html" %}
-{% load static %}
-
-{% block page_header %}
-<div class="container header-container">
-    {% for profile in profiles %}
-        {% if request.user == profile.user %}
-            {% if profile.premium_member %}
-                <div>Premium member</div>
-            {% else %}
-                <div>Non premium member</div>
-            {% endif %}
-        {% endif %}
-    {% endfor %}
-    <div class="row">
-        <div class="col"></div>
-    </div>
-</div>
-{% endblock %}
-
-{% block content %}
-<div class="overlay"></div>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col text-center mt-3">
-            <h2 class="logo-font">Metrics</h2>
-            <hr class="w-50 mb-1">
-        </div>
-    </div>
-    <div class="row">
-        <div class="product-container col-10 offset-1">
-            <div class="row mt-1 mb-2"></div>
-            <div class="row">
                 {% for profile in profiles %}
                     {% if request.user == profile.user %}
                         {% for metric in metrics %}
                             {% if metric.name == 'risk_indicator' %}
                                 {% if profile.premium_member %}
-                                    <!-- Return risk metric if user is premium member -->
                                     <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                                         <div class="card h-100 border-0">
                                             <a href="{% url 'metric_detail' metric.id %}">
@@ -56,7 +22,6 @@
                                         </div>
                                     </div>
                                 {% else %}
-                                    <!-- Risk metric with no access for non premium members -->
                                     <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                                         <div class="card h-100 border-0">
                                             <a href="">
@@ -78,7 +43,6 @@
                                     </div>
                                 {% endif %}
                             {% else %}
-                                <!-- Render all other metrics -->
                                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                                     <div class="card h-100 border-0">
                                         <a href="{% url 'metric_detail' metric.id %}">
@@ -125,9 +89,3 @@
                         {% endfor %}
                     {% endif %}
                 {% endfor %}
-            </div>
-        </div>
-    </div>
-    
-</div>
-{% endblock %}

@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, render
 from numpy import log
 from .models import Metric, Bitcoin_Price_Data
+from home.models import Profile, User
 import plotly.graph_objects as go
 from plotly.offline import plot
 import sqlite3
@@ -13,8 +14,12 @@ def all_metrics(request):
     """ A view to return all metrics """
 
     metrics = Metric.objects.all()
+    profiles = Profile.objects.all()
+    users = User.objects.all()
     context = {
-        'metrics': metrics
+        'metrics': metrics,
+        'users': users,
+        'profiles': profiles,
         }
 
     return render(request, 'metrics/metrics.html', context)
