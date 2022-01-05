@@ -1,9 +1,13 @@
 from django.shortcuts import get_object_or_404, render
 from numpy import log
+import numpy
+from pandas.core.frame import DataFrame
 from .models import Metric, Bitcoin_Price_Data
 from home.models import Profile, User
 import plotly.graph_objects as go
 from plotly.offline import plot
+import plotly.express as px
+from plotly.graph_objs import *
 import sqlite3
 import pandas as pd
 
@@ -42,14 +46,22 @@ def metric_detail(request, metric_id):
     sql_query = pd.read_sql_query('''SELECT * FROM metrics_bitcoin_price_data''', conn)
 
     df = pd.DataFrame(sql_query, columns = ['date', 'open', 'price', 'high', 'low'])
-    print (df)
+    
 
-    fig = go.Figure(data=[go.Candlestick(
-        x=df['date'],
-        open=df['open'], high=df['high'],
-        low=df['low'], close=df['price'],
-        increasing_line_color= 'green', decreasing_line_color= 'red'
-    )])
+    # Calculate moving averages using dataframe
+    df['111DMA'] = df.iloc[:,1].rolling(window=111).mean()
+    df['350DMA*2'] = (df.iloc[:,1].rolling(window=350).mean())*2
+    df['200WMA'] = df.iloc[:,1].rolling(window=200).mean()
+    df['50DMA'] = df.iloc[:,1].rolling(window=50).mean()
+    df['350DMA'] = df.iloc[:,1].rolling(window=350).mean()
+
+
+    fig = px.line(df, x='date', y=df['price'])
+    fig.add_scatter(name='111DMA', x=df['date'], y=df['111DMA'])
+    fig.add_scatter(name='350DMA*2', x=df['date'], y=df['350DMA*2'])
+    fig.add_scatter(name='200WMA', x=df['date'], y=df['200WMA'])
+    fig.add_scatter(name='50DMA', x=df['date'], y=df['50DMA'])
+    fig.add_scatter(name='350DMA', x=df['date'], y=df['350DMA'])
 
     fig.update_layout(
         width=1600, height=800,
