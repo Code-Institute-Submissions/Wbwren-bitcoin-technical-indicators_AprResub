@@ -27,9 +27,8 @@ class Metric_Data(models.Model):
     date = models.DateField(_("date"))
     pi_cycle_top = models.FloatField(_("pi_cycle_top"), null=True, blank=True)
     ma200w = models.FloatField(_("200WMA"), null=True, blank=True)
-    ma50D_50w = models.FloatField(_("ma50D_50w"), null=True, blank=True)
+    ma50d_50w = models.FloatField(_("ma50D_50w"), null=True, blank=True)
     risk_indicator = models.FloatField(_("risk_indicator"), null=True, blank=True)
-    rsi = models.FloatField(_("rsi"), null=True, blank=True)
 
     def __str__(self):
         return self.name

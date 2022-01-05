@@ -25,7 +25,6 @@ def all_metrics(request):
         'users': users,
         'profiles': profiles,
         }
-
     return render(request, 'metrics/metrics.html', context)
 
 
@@ -57,23 +56,31 @@ def metric_detail(request, metric_id):
 
 
     fig = px.line(df, x='date', y=df['price'])
-    fig.add_scatter(name='111DMA', x=df['date'], y=df['111DMA'])
-    fig.add_scatter(name='350DMA*2', x=df['date'], y=df['350DMA*2'])
-    fig.add_scatter(name='200WMA', x=df['date'], y=df['200WMA'])
-    fig.add_scatter(name='50DMA', x=df['date'], y=df['50DMA'])
-    fig.add_scatter(name='350DMA', x=df['date'], y=df['350DMA'])
+    
+    if int(metric_id) == 3:
+        fig.add_scatter(name='50DMA', x=df['date'], y=df['50DMA'])
+        fig.add_scatter(name='350DMA', x=df['date'], y=df['350DMA'])
+    elif int(metric_id) == 4:
+        fig.add_scatter(name='200WMA', x=df['date'], y=df['200WMA'])
+    elif int(metric_id) == 5:
+        fig.add_scatter(name='111DMA', x=df['date'], y=df['111DMA'])
+        fig.add_scatter(name='350DMA*2', x=df['date'], y=df['350DMA*2'])
+        fig.add_vline(x='2013-12-01', line_dash="dash", line_width=2, line_color="green")
+        fig.add_vline(x='2017-12-16', line_dash="dash", line_width=2, line_color="green")
+        fig.add_vline(x='2013-04-05', line_dash="dash", line_width=2, line_color="green")
+        fig.add_vline(x='2021-04-11', line_dash="dash", line_width=2, line_color="green")
 
-    fig.update_layout(
-        width=1600, height=800,
-        title='Bitcoin Data',
-        yaxis_title='Price',
-        shapes = [dict(
-            x0='2012-12-09', x1='2012-12-09', y0=0, y1=1, xref='x', yref='paper',
-            line_width=2)],
-        annotations=[dict(
-            x='2016-12-09', y=0.05, xref='x', yref='paper',
-            showarrow=False, xanchor='left', text='Increase Period Begins')]
-    )
+    # fig.update_layout(
+    #     width=1600, height=800,
+    #     title='Bitcoin Data',
+    #     yaxis_title='Price',
+    #     shapes = [dict(
+    #         x0='2012-12-09', x1='2012-12-09', y0=0, y1=1, xref='x', yref='paper',
+    #         line_width=2)],
+    #     annotations=[dict(
+    #         x='2016-12-09', y=0.05, xref='x', yref='paper',
+    #         showarrow=False, xanchor='left', text='Increase Period Begins')]
+    # )
 
     fig.update_yaxes(type="log", range=[-1,5])
 

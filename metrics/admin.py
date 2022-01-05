@@ -15,10 +15,8 @@ class MetricDataAdmin(admin.ModelAdmin):
         'date',
         'pi_cycle_top',
         'ma200w',
-        'ma50D_50w',
+        'ma50d_50w',
         'risk_indicator',
-        'rsi',
-
     )
 
 class PriceAdmin(admin.ModelAdmin):
