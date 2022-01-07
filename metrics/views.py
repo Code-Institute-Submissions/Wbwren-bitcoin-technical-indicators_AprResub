@@ -1,4 +1,5 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
+from django.contrib.auth.models import AnonymousUser
 from numpy import log
 import numpy
 from pandas.core.frame import DataFrame
@@ -11,26 +12,34 @@ from plotly.graph_objs import *
 import sqlite3
 import pandas as pd
 
-
 # Create your views here.
 '''View to display all metrics available'''
 def all_metrics(request):
     """ A view to return all metrics """
 
+    if 'user' not in request.session:
+        return redirect('/accounts/login/')
+        
+
     metrics = Metric.objects.all()
+    currentProfile = None
+
     profiles = Profile.objects.all()
-    users = User.objects.all()
+    for profile in profiles:
+        if profile.email == request.user.email:
+            currentProfile = profile
+    
+    print(request.user.email)
     context = {
         'metrics': metrics,
-        'users': users,
-        'profiles': profiles,
+        'currentProfile': currentProfile,
         }
     return render(request, 'metrics/metrics.html', context)
 
 '''View to display an individual metric'''
 def metric_detail(request, metric_id):
     # Connect to database and retrieve bitcoin price data
-    conn = sqlite3.connect('db.sqlite3')      
+    conn = sqlite3.connect('db.sqlite3')
     sql_query = pd.read_sql_query('''SELECT * FROM metrics_bitcoin_price_data''', conn)
     df = pd.DataFrame(sql_query, columns = ['date', 'open', 'price', 'high', 'low'])
 
