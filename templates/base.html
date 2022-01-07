@@ -7,6 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
     {% endblock %}
 
     {% block extra_meta %}
@@ -27,12 +28,14 @@
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <!-- Stripe -->
+        <script src="https://js.stripe.com/v3/"></script>
     {% endblock %}
 
     {% block extra_js %}
     {% endblock %}
 
-    <title>Crypto Technical Analysis{% block extra_title %}{% endblock %}</title>
+<title>Crypto Technical Analysis{% block extra_title %}{% endblock %}</title>
 </head>
   <body>
       <header class="container-fluid fixed-top">
@@ -59,7 +62,7 @@
                           <div class="dropdown-menu border-0" aria-labelledby="user-options">
                               {% if request.user.is_authenticated %}
                               {% if request.user.is_superuser %}
-                              <a href="" class="dropdown-item">Edit Price Data</a>
+                              <a href="{% url 'admincrud' %}" class="dropdown-item">Edit Price Data</a>
                               {% endif %}
                               <a href="" class="dropdown-item">My Profile</a>
                               <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
@@ -70,7 +73,7 @@
                           </div>
                       </li>
                       <li class="list-inline-item">
-                          <a href="">Purchase Premium Access</a>
+                          <a href="{% url 'checkout' %}">Purchase Premium Access</a>
                       </li>
                   </ul>
               </div>

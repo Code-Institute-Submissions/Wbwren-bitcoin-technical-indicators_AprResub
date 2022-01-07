@@ -15,7 +15,7 @@ class MetricDataAdmin(admin.ModelAdmin):
         'date',
         'pi_cycle_top',
         'ma200w',
-        'ma50d_50w',
+        'ma50d_200d',
         'risk_indicator',
     )
 

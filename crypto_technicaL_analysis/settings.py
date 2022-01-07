@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -45,6 +47,8 @@ INSTALLED_APPS = [
     'home',
     'metrics',
     'bag',
+    'admincrud',
+    'checkout',
 ]
 
 MIDDLEWARE = [
@@ -161,3 +165,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Stripe
+FREE_DELIVERY_THRESHOLD = 50
+STANDARD_DELIVERY_PERCENTAGE = 10
+STRIPE_CURRENCY = 'usd'
+STRIPE_PUBLIC_KEY = 'pk_test_51KEzvPLpVv4A2QNYg3AZbqYvdilc0rtPM3utyPSTRv6OQ7JgKEDPO8dkB4HrbGGAMziXHJTGwe82FTBCU3kDHiZ900Eu4HMyra'
+STRIPE_SECRET_KEY = 'sk_test_51KEzvPLpVv4A2QNYfcm7jo7macwMPeIVFgoUs10oHgHkPanDvPPY6CyjSySd20sjMcXoFChTDVLg94t88FjAFess00ajNWsLN9'
+STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
