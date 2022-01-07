@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+
+{% endblock %}
+
+{% block content %}
+
+<button>Add New Price</button>
+
+<!-- <button type="submit"> &raquo;</button> -->
+
+
+<table>
+    {% for c in btc %}
+    <tr>
+        <td>{{c.date}}</td>
+        <td>{{c.price}}</td>
+        <td>{{c.close}}</td>
+        <td>{{c.high}}</td>
+        <td>{{c.low}}</td>
+        <td><button>Edit</button></td>
+        <td><button>Delete</button></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
