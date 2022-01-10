@@ -1,3 +1,4 @@
+from _plotly_utils.basevalidators import ColorlistValidator
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.models import AnonymousUser
 from numpy import log
@@ -17,8 +18,8 @@ import pandas as pd
 def all_metrics(request):
     """ A view to return all metrics """
 
-    if 'user' not in request.session:
-        return redirect('/accounts/login/')
+    # if 'user' not in request.session:
+    #     return redirect('/accounts/login/')
         
 
     metrics = Metric.objects.all()
@@ -46,13 +47,20 @@ def metric_detail(request, metric_id):
     # Calculate moving averages using dataframe
     df['111DMA'] = df.iloc[:,1].rolling(window=111).mean()
     df['350DMA*2'] = (df.iloc[:,1].rolling(window=350).mean())*2
+    df['350DMA'] = (df.iloc[:,1].rolling(window=350).mean())
     df['200WMA'] = df.iloc[:,1].rolling(window=1400).mean()
     df['50DMA'] = df.iloc[:,1].rolling(window=50).mean()
     df['200DMA'] = df.iloc[:,1].rolling(window=200).mean()
 
+    # Calculate the Simple moving average ratio
+    df['SMAR'] = df['50DMA'] / df['350DMA']
+
     fig = px.line(df, x='date', y=df['price'])
     
     # Check which metric is selected and add the appropritate moving averages
+    if int(metric_id) == 1:
+        fig.add_scatter(name='SMAR', x=df['date'], y=df['SMAR'], line_color="green")
+        fig.add_hline(y=0.9, line_color="red")
     if int(metric_id) == 3:
         fig.add_scatter(name='50DMA', x=df['date'], y=df['50DMA'])
         fig.add_scatter(name='200DMA', x=df['date'], y=df['200DMA'])
