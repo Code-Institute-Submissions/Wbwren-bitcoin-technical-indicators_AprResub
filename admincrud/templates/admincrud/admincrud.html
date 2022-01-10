@@ -20,8 +20,8 @@
         <td>{{c.close}}</td>
         <td>{{c.high}}</td>
         <td>{{c.low}}</td>
-        <td><button>Edit</button></td>
-        <td><button>Delete</button></td>
+        <td><a href="">Edit</a></td>
+        <td><a href="{% url 'delete_date' c.date %}">Delete</a></td>
     </tr>
     {% endfor %}
 </table>

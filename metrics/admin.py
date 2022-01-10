@@ -20,7 +20,8 @@ class MetricDataAdmin(admin.ModelAdmin):
     )
 
 class PriceAdmin(admin.ModelAdmin):
-    list_display = (
+    list_display = (\
+         "id",
          "date",
          "open",
          "price",

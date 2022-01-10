@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from metrics.models import Bitcoin_Price_Data
 
 # Create your views here.
@@ -12,3 +12,7 @@ def admincrud(request):
         }
 
     return render(request, 'admincrud/admincrud.html', context)
+
+def delete_date(request, date):
+    get_object_or_404(Bitcoin_Price_Data, date=date).delete()
+    return render(request, 'admincrud/admincrud.html')
