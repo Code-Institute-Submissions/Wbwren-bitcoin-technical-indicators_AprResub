@@ -1,7 +1,7 @@
 from django import forms
 from metrics.models import Bitcoin_Price_Data
 
-class BitcoinAddForm(forms.ModelForm):
+class BitcoinForm(forms.ModelForm):
 
     class Meta:
         model = Bitcoin_Price_Data

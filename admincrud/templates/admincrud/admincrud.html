@@ -22,7 +22,7 @@
         <td>{{c.close}}</td>
         <td>{{c.high}}</td>
         <td>{{c.low}}</td>
-        <td><a href="">Edit</a></td>
+        <td><a href="{% url 'edit_date' c.date %}">Edit</a></td>
         <td><a href="{% url 'delete_date' c.date %}">Delete</a></td>
     </tr>
     {% endfor %}
