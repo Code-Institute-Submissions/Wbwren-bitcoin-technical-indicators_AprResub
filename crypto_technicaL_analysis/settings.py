@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     'metrics',
     'bag',
     'admincrud',
-    'checkout',
 ]
 
 MIDDLEWARE = [
