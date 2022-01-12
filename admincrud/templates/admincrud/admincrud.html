@@ -7,13 +7,15 @@
 
 {% block content %}
 
-<button>Add New Price</button>
+
 
 <!-- <button type="submit"> &raquo;</button> -->
 
 
 <table>
+    <a href="{% url 'add_price_data' %}">Add New Price</a>
     {% for c in btc reversed %}
+    
     <tr>
         <td>{{c.date}}</td>
         <td>{{c.price}}</td>
