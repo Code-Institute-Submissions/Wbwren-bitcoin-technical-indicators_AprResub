@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
+import dj_database_url
 
 
 
@@ -117,6 +119,9 @@ DATABASES = {
     }
 }
 
+# DATABASE = {
+#     'default': dj_database_url.parse()
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
