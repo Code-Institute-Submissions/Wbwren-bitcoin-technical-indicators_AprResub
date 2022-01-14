@@ -8,14 +8,15 @@ from crypto_technicaL_analysis.settings import STRIPE_SECRET_KEY
 
 def checkout(request):
     try:
+        stripe.api_key = STRIPE_SECRET_KEY
         session = stripe.checkout.Session.create(
         line_items=[{
             'price_data': {
             'currency': 'usd',
             'product_data': {
-            'name': 'T-shirt',
+            'name': 'Risk Metric',
         },
-            'unit_amount': 2000,
+            'unit_amount': 15000,
         },
             'quantity': 1,
         }],
@@ -26,14 +27,11 @@ def checkout(request):
     except:
         checkout_unsuccessful(request)
         return checkout_unsuccessful(request)
-
     return redirect(session.url, code=303)
 
 def checkout_successful(request):
-
     return render(request, 'checkout/checkout_successful.html')
 
 def checkout_unsuccessful(request):
-
     return render(request, 'checkout/checkout_unsuccessful.html')
 
