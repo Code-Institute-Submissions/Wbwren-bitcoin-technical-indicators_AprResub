@@ -4,18 +4,7 @@ from django.shortcuts import render, redirect, reverse
 from django.contrib import messages
 import stripe
 
-
-from .forms import OrderForm
-
-
-
-stripe.api_key = "sk_test_51KEzvPLpVv4A2QNYfcm7jo7macwMPeIVFgoUs10oHgHkPanDvPPY6CyjSySd20sjMcXoFChTDVLg94t88FjAFess00ajNWsLN9"
-
-# def checkout(request):
-#     if request.method == 'POST':
-#         create_checkout_session(request)
-
-#     return render(request, 'checkout/checkout.html')
+from crypto_technicaL_analysis.settings import STRIPE_SECRET_KEY
 
 def checkout(request):
     try:

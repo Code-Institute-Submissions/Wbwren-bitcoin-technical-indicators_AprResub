@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import environ
 import os
 
 
@@ -169,10 +170,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+env = environ.Env()
+environ.Env.read_env()
+
 # Stripe
 FREE_DELIVERY_THRESHOLD = 50
 STANDARD_DELIVERY_PERCENTAGE = 10
 STRIPE_CURRENCY = 'usd'
-STRIPE_PUBLIC_KEY = 'pk_test_51KEzvPLpVv4A2QNYg3AZbqYvdilc0rtPM3utyPSTRv6OQ7JgKEDPO8dkB4HrbGGAMziXHJTGwe82FTBCU3kDHiZ900Eu4HMyra'
-STRIPE_SECRET_KEY = 'sk_test_51KEzvPLpVv4A2QNYfcm7jo7macwMPeIVFgoUs10oHgHkPanDvPPY6CyjSySd20sjMcXoFChTDVLg94t88FjAFess00ajNWsLN9'
-STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
+STRIPE_PUBLIC_KEY = env('STRIPE_PUBLIC_KEY')
+STRIPE_SECRET_KEY = env('STRIPE_SECRET_KEY')
+STRIPE_WH_SECRET = env('STRIPE_WH_SECRET')
