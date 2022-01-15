@@ -31,8 +31,10 @@ def checkout(request):
     return redirect(session.url, code=303)
 
 def checkout_successful(request):
+
     return render(request, 'checkout/checkout_successful.html')
 
 def checkout_unsuccessful(request):
+
     return render(request, 'checkout/checkout_unsuccessful.html')
 

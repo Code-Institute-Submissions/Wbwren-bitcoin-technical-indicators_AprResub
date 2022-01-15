@@ -1,9 +1,6 @@
 from django.http import HttpResponse
-from home.models import Profile
-from django.shortcuts import get_object_or_404
 
-
-class StripeWH_Handler:
+class StripeWH_Handler():
     """Handle Stripe webhooks"""
     
     def __init__(self, request):
@@ -21,15 +18,6 @@ class StripeWH_Handler:
         """
         Handle the payment_intent.succeeded webhook from Stripe
         """
-        print('test here')
-        print(self.request)
-        print(self.request.user.email)
-        profile = get_object_or_404(Profile, email=self.request.user.email)
-        print(f'profile email: {profile.email}')
-        print(f'profile premium member: {profile.premium_member}')
-        profile.premium_member = True
-        profile.save()
-        print(f'profile premium member: {profile.premium_member}')
         return HttpResponse(
             content=f'Webhook: {event["type"]}',
             status=200)
