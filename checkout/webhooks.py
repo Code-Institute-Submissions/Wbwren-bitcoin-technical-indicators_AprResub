@@ -48,11 +48,8 @@ def webhook(request):
 
     # Get the webhook type from Stripe
     event_type = event['type']
-    print('test here')
-    print(f'event_type: {event_type}')   
-    print(request)
-    print(request.user.email)
-    profile = get_object_or_404(Profile, email=request.user.email)
+
+    profile = get_object_or_404(Profile, email='wren233@gmail.com')
     print(f'profile email: {profile.email}')
     print(f'profile premium member: {profile.premium_member}')
     profile.premium_member = True
