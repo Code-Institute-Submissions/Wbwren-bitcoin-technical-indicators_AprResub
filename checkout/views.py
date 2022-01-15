@@ -20,7 +20,8 @@ def checkout(request):
         },
             'quantity': 1,
         }],
-        mode='payment',
+        mode='payment',        
+
         success_url='https://bitcoin-technical-indicators.herokuapp.com/checkout/checkout_successful',
         cancel_url='https://bitcoin-technical-indicators.herokuapp.com/checkout/checkout_unsuccessful',
         )
