@@ -1,4 +1,3 @@
-from asyncio.windows_events import NULL
 from django.http import HttpResponse
 from home.models import Profile
 from django.shortcuts import get_object_or_404
