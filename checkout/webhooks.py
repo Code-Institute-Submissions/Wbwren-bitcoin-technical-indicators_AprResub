@@ -2,7 +2,7 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
-from crypto_technicaL_analysis.settings import STRIPE_SECRET_KEY, STRIPE_WH_SECRET
+from bitcoin_technical_indicators.settings import STRIPE_SECRET_KEY, STRIPE_WH_SECRET
 
 from checkout.webhook_handler import StripeWH_Handler
 

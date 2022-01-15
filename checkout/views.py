@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect, reverse
 from django.contrib import messages
 import stripe
 
-from crypto_technicaL_analysis.settings import STRIPE_SECRET_KEY
+from bitcoin_technical_indicators.settings import STRIPE_SECRET_KEY
 
 def checkout(request):
     try:
