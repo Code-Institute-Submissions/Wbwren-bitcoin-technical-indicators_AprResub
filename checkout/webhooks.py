@@ -40,7 +40,7 @@ def webhook(request):
     handler = StripeWH_Handler(request)
     
     print("Look below")
-    print(handler.event["type"])
+    print(handler.content)
     if(handler.content == 'Webhook: payment_intent.succeeded'):
         print('inside if')
         profile = get_object_or_404(Profile, email=request.user.email)
