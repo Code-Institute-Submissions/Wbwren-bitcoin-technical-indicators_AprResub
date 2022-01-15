@@ -3,8 +3,6 @@ from django.http import HttpResponse
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
 from bitcoin_technical_indicators.settings import STRIPE_SECRET_KEY, STRIPE_WH_SECRET
-from home.models import Profile
-from django.shortcuts import get_object_or_404
 
 from checkout.webhook_handler import StripeWH_Handler
 
@@ -37,17 +35,7 @@ def webhook(request):
         return HttpResponse(content=e, status=400)
 
     # Set up a webhook handler
-    handler = StripeWH_Handler(request)
-    
-    print("Look below")
-    print(handler.content)
-    if(handler.content == 'Webhook: payment_intent.succeeded'):
-        print('inside if')
-        profile = get_object_or_404(Profile, email=request.user.email)
-        profile.premium_member = True
-        profile.save()
-        print('endif')
-    print('end')
+    handler = StripeWH_Handler(request)       
 
     # Map webhook events to relevant handler functions
     event_map = {

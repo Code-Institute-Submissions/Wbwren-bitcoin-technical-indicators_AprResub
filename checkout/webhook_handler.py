@@ -20,7 +20,9 @@ class StripeWH_Handler:
         """
         Handle the payment_intent.succeeded webhook from Stripe
         """
-
+        profile = get_object_or_404(Profile, email=StripeWH_Handler.request.user.email)
+        profile.premium_member = True
+        profile.save()
         return HttpResponse(
             content=f'Webhook: {event["type"]}',
             status=200)
