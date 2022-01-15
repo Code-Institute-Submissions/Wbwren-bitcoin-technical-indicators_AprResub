@@ -1,1 +1,1 @@
-web: gunicorn bitcoin-technical-indicators.wsgi:application
+web: gunicorn bitcoin_technical_indicators.wsgi:application
