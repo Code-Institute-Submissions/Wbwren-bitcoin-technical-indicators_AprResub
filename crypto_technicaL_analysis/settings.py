@@ -33,7 +33,7 @@ SECRET_KEY = 'django-insecure-3ex(z7y+td@dcy3v08-=78+c8sb5$tnuv2$s)mprqk%0w2j=km
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['bitcoin-technical-indicators.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['wbwren-bitcoin-technical-indicators.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -113,12 +113,11 @@ WSGI_APPLICATION = 'crypto_technicaL_analysis.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
 if 'DATABASE_URL' in env:
     DATABASES = {
         'default': dj_database_url.parse(env('DATABASE_URL'))
     }
-else:   
+else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
