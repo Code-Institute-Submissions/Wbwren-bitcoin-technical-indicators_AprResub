@@ -33,7 +33,7 @@ SECRET_KEY = 'django-insecure-3ex(z7y+td@dcy3v08-=78+c8sb5$tnuv2$s)mprqk%0w2j=km
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['wbwren-bitcoin-technical-indicators.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['bitcoin-technical-indicators.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
