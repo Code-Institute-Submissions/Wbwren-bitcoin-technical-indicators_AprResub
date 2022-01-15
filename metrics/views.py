@@ -1,5 +1,5 @@
 from _plotly_utils.basevalidators import ColorlistValidator
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.models import AnonymousUser
 from numpy import log
 import numpy
@@ -35,6 +35,7 @@ def all_metrics(request):
         'metrics': metrics,
         'currentProfile': currentProfile,
         }
+
     return render(request, 'metrics/metrics.html', context)
 
 '''View to display an individual metric'''
