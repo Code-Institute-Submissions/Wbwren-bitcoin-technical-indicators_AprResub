@@ -13,7 +13,11 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import environ
 import os
+import dj_database_url
 
+
+env = environ.Env()
+environ.Env.read_env()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -29,7 +33,7 @@ SECRET_KEY = 'django-insecure-3ex(z7y+td@dcy3v08-=78+c8sb5$tnuv2$s)mprqk%0w2j=km
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['bitcoin-technical-indicators.herokuapp.com', 'localhost']
 
 
 # Application definition
@@ -110,16 +114,18 @@ WSGI_APPLICATION = 'crypto_technicaL_analysis.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+if 'DATABASE_URL' in env:
+    DATABASES = {
+        'default': dj_database_url.parse(env('DATABASE_URL'))
     }
-}
+else:   
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
-# DATABASE = {
-#     'default': dj_database_url.parse()
-# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -170,8 +176,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-env = environ.Env()
-environ.Env.read_env()
+
 
 # Stripe
 FREE_DELIVERY_THRESHOLD = 50
