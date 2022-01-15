@@ -20,7 +20,7 @@ class StripeWH_Handler():
         """
         print(f'event data object: {event.data.object}')
         print(f'event data object: {event.data.object.charges}')
-        print(f'event data object: {event.data.object.charges.data[0].billing_details}')
+        print(f'event.data.object.charges.data[0].billing_details.email**: {event.data.object.charges.data[0].billing_details.email}')
         return HttpResponse(
             content=f'Webhook: {event["type"]}',
             status=200)
