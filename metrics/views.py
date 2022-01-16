@@ -12,6 +12,7 @@ import plotly.express as px
 from plotly.graph_objs import *
 import sqlite3
 import pandas as pd
+from home.context_processor import is_premium_member
 
 # Create your views here.
 """View to display all metrics available"""
@@ -31,11 +32,12 @@ def all_metrics(request):
         if profile.email == request.user.email:
             currentProfile = profile
 
-    print(request.user.email)
     context = {
         "metrics": metrics,
         "currentProfile": currentProfile,
     }
+
+    request = is_premium_member(request)
 
     return render(request, "metrics/metrics.html", context)
 
@@ -92,5 +94,7 @@ def metric_detail(request, metric_id):
 
     # Getting HTML needed to render the plot.
     plot_div = plot({"data": fig}, output_type="div")
+
+    request = is_premium_member(request)
 
     return render(request, "metrics/metric_detail.html", context={"plot_div": plot_div})

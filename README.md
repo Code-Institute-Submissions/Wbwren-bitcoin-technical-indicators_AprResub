@@ -19,3 +19,11 @@
 
 
 Super user can edit bitcoin price data undert the account section in nav
+
+
+
+# Testing
+- test super user can crud price data
+
+- test non super user cannot crud data
+

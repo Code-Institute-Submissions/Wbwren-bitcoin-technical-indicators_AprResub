@@ -14,8 +14,21 @@
     <div class="row h-100">
         <div class="col-7 col-md-6 my-auto">
             <h1 class="display-4 logo-font text-black">
-                Dashboard
+                Welcome,
+                {% if request.user == "AnonymousUser" %}
+                {% else %}
+                {{ request.user.first_name }}
+                {% endif %}
             </h1>
+
+            <h2>
+                {% if request.user == "AnonymousUser" %}
+                To view the bitcoin metrics avalable, click <a href="#">here.</a>
+                {% else %}
+                {{ request.META.premium_member }}
+                {% endif %}
+
+            </h2>
         </div>
     </div>
 </div>

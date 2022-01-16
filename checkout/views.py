@@ -1,7 +1,4 @@
-import os
-from re import template
-from django.shortcuts import render, redirect, reverse
-from django.contrib import messages
+from django.shortcuts import render, redirect
 import stripe
 
 from bitcoin_technical_indicators.settings import STRIPE_SECRET_KEY
