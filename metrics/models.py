@@ -1,3 +1,4 @@
+from email.mime import image
 from django.db import models
 from django.db.models.deletion import CASCADE
 from django.db.models.fields import DecimalField
@@ -10,6 +11,7 @@ class Metric(models.Model):
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
     description = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
+    image_path = models.CharField(max_length=254)
 
     def __str__(self):
         return self.name
