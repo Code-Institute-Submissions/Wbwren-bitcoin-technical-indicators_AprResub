@@ -84,7 +84,7 @@
                     </li>
                     {% if not request.META.premium_member %}
                     <li class="list-inline-item">
-                        <a href="{% url 'checkout' %}">Purchase Premium Access</a>
+                        <a href="{% url 'premium_access_detail' %}">Purchase Premium Access</a>
                     </li>
                     {% else %} 
                     <li class="list-inline-item">

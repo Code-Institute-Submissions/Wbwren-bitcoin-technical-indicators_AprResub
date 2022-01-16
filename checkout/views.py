@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 import stripe
+from home.context_processor import is_premium_member
 
 from bitcoin_technical_indicators.settings import STRIPE_SECRET_KEY
 
@@ -29,12 +30,16 @@ def checkout(request):
         return checkout_unsuccessful(request)
     return redirect(session.url, code=303)
 
+def premium_access_detail(request):
+    request = is_premium_member(request)
+    return render(request, "checkout/premium_access_detail.html")
+
 
 def checkout_successful(request):
-
+    request = is_premium_member(request)
     return render(request, "checkout/checkout_successful.html")
 
 
 def checkout_unsuccessful(request):
-
+    request = is_premium_member(request)
     return render(request, "checkout/checkout_unsuccessful.html")

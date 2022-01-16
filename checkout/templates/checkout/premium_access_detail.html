@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<h1>The Risk Indicator</h1>
+<p>
+    The Risk Indicator metric allows for the configurarion of a 'risk level'. 
+    Depending on the risk level you choose, buy and sell zones will vary. The
+    risk metric will ranfe from 1-10 and depending on the current risk level,
+    you will be advised to buy or sell, depening on the chossen risk level.
+</p>
+{% if request.META.premium_member %}
+
+{% else %}
+
+{% endif %}
+<form action="{% url 'checkout' %}" method="POST">{% csrf_token %}
+    <button type="submit">Checkout</button>
+</form>
+{% endblock %}
