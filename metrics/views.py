@@ -1,12 +1,5 @@
-from _plotly_utils.basevalidators import ColorlistValidator
-from django.shortcuts import get_object_or_404, render
-from django.contrib.auth.models import AnonymousUser
-from numpy import log
-import numpy
-from pandas.core.frame import DataFrame
-from .models import Metric, Bitcoin_Price_Data
-from home.models import Profile, User
-import plotly.graph_objects as go
+from django.shortcuts import render
+from .models import Metric
 from plotly.offline import plot
 import plotly.express as px
 from plotly.graph_objs import *
@@ -14,27 +7,17 @@ import sqlite3
 import pandas as pd
 from home.context_processor import is_premium_member
 
-# Create your views here.
-"""View to display all metrics available"""
-
 
 def all_metrics(request):
     """A view to return all metrics"""
 
-    # if 'user' not in request.session:
-    #     return redirect('/accounts/login/')
+    if request.user.is_anonymous:
+        return render(request, "home/index.html")
 
     metrics = Metric.objects.all()
-    currentProfile = None
-
-    profiles = Profile.objects.all()
-    for profile in profiles:
-        if profile.email == request.user.email:
-            currentProfile = profile
 
     context = {
         "metrics": metrics,
-        "currentProfile": currentProfile,
     }
 
     request = is_premium_member(request)
@@ -42,10 +25,11 @@ def all_metrics(request):
     return render(request, "metrics/metrics.html", context)
 
 
-"""View to display an individual metric"""
-
-
 def metric_detail(request, metric_id):
+    """View to display an individual metric"""
+    if request.user.is_anonymous:
+        return render(request, "home/index.html")
+
     # Connect to database and retrieve bitcoin price data
     conn = sqlite3.connect("db.sqlite3")
     sql_query = pd.read_sql_query("""SELECT * FROM metrics_bitcoin_price_data""", conn)

@@ -9,7 +9,7 @@ from home.context_processor import is_premium_member
 
 def index(request):
     """A view to return the index page"""
-    if str(request.user) == "AnonymousUser":
+    if request.user.is_anonymous:
         return render(request, "home/index.html")
 
     request = is_premium_member(request)
