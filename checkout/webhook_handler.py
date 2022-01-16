@@ -2,9 +2,10 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from home.models import Profile
 
-class StripeWH_Handler():
+
+class StripeWH_Handler:
     """Handle Stripe webhooks"""
-    
+
     def __init__(self, request):
         self.request = request
 
@@ -12,27 +13,22 @@ class StripeWH_Handler():
         """
         Handle a generic/unknown/unexpected webhook event
         """
-        return HttpResponse(
-            content=f'Unhandled webhook: {event["type"]}',
-            status=200)
+        return HttpResponse(content=f'Unhandled webhook: {event["type"]}', status=200)
 
     def handle_payment_intent_succeeded(self, event):
         """
         Handle the payment_intent.succeeded webhook from Stripe
         """
-        profile = get_object_or_404(Profile, email=event.data.object.charges.data[0].billing_details.email)
+        profile = get_object_or_404(
+            Profile, email=event.data.object.charges.data[0].billing_details.email
+        )
         profile.premium_member = True
         profile.save()
-        
-        return HttpResponse(
-            content=f'Webhook: {event["type"]}',
-            status=200)
+
+        return HttpResponse(content=f'Webhook: {event["type"]}', status=200)
 
     def handle_payment_intent_payment_failed(self, event):
         """
         Handle the payment_intent.payment_failed webhook from Stripe
         """
-        return HttpResponse(
-            content=f'Webhook: {event["type"]}',
-            status=200)
-   
+        return HttpResponse(content=f'Webhook: {event["type"]}', status=200)

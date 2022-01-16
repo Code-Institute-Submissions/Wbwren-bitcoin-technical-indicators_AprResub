@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'bitcoin_technical_indicators.settings')
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "bitcoin_technical_indicators.settings")
 
 application = get_wsgi_application()

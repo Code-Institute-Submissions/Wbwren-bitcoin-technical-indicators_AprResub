@@ -19,10 +19,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('accounts/', include('allauth.urls')),
-    path('', include('home.urls')),
-    path('metrics/', include('metrics.urls')),
-    path('admincrud/', include('admincrud.urls')),
-    path('checkout/', include('checkout.urls')),
+    path("admin/", admin.site.urls),
+    path("accounts/", include("allauth.urls")),
+    path("", include("home.urls")),
+    path("metrics/", include("metrics.urls")),
+    path("admincrud/", include("admincrud.urls")),
+    path("checkout/", include("checkout.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
