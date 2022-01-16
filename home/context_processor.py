@@ -3,7 +3,7 @@ from home.models import Profile
 
 """ Function to check if user is a premium member """
 def is_premium_member(request):
-    if request.user.is_anonymous:
+    if not request.user.is_anonymous:
         profile = get_object_or_404(Profile, email=request.user.email)
         if profile.premium_member:
             request.META["premium_member"] = True

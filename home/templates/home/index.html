@@ -20,7 +20,6 @@
                 {{ request.user.first_name }}
                 {% endif %}
             </h1>
-
             <h2>
                 {% if request.user.is_anonymous %}
                 To view the bitcoin metrics avalable, please <a href="{% url 'account_signup' %}">register</a> or <a href="{% url 'account_login' %}">login</a>

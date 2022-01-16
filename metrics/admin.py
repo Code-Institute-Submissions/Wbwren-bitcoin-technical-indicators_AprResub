@@ -7,7 +7,7 @@ class MetricAdmin(admin.ModelAdmin):
         "friendly_name",
         "name",
         "price",
-        "description",
+        "description_short",
     )
 
 

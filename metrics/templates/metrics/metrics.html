@@ -5,13 +5,13 @@
 {% block page_header %}
 <div class="container header-container">
     {% for profile in profiles %}
-        {% if request.user == profile.user %}
-            {% if profile.premium_member %}
-                <div>Premium member</div>
-            {% else %}
-                <div>Non premium member</div>
-            {% endif %}
-        {% endif %}
+    {% if request.user == profile.user %}
+    {% if profile.premium_member %}
+    <div>Premium member</div>
+    {% else %}
+    <div>Non premium member</div>
+    {% endif %}
+    {% endif %}
     {% endfor %}
     <div class="row">
         <div class="col"></div>
@@ -34,99 +34,73 @@
             <div class="row">
 
                 {% for metric in metrics %}
-                    {% if metric.name == 'risk_indicator' %}
-                        {% if profile.premium_member %}
-                            <!-- Return risk metric if user is premium member -->
-                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                                <div class="card h-100 border-0">
-                                    <a href="{% url 'metric_detail' metric.id %}">
-                                        <img src="{{ metric.image_path }}" alt="{{ metric.friendly_name }}" />
-                                    </a>
-                                    <div class="card-body pb-0">
-                                        <p class="mb-0">{{ metric.friendly_name }}</p>
-                                    </div>
-                                    <div class="card-footer bg-white pt-0 border-0 text-left">
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="lead mb-0 text-left font-weight-bold">${{ metric.price }}</p>
-                                                <small class="text-muted">{{ metric.description }}</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                    <div class="card h-100 border-0">
+                        <!-- Check if the metric being rendered is the risk metric
+                        if so, check if the user is a premium member -->
+                        {% if metric.name == 'risk_indicator' %}
+                            {% if request.META.premium_member %}
+                            <a href="{% url 'metric_detail' metric.id %}">
+                                <img src="{{ metric.image_path }}" alt="{{ metric.friendly_name }}" class="metric_detail_img" />
+                            </a>
+                            <div class="card-body pb-0">
+                                <a href="{% url 'metric_detail' metric.id %}">{{ metric.friendly_name }}</a>
                             </div>
+                            {% else %}
+                            <a href="{% url 'premium_access_detail' %}">
+                                <img src="{{ metric.image_path }}" alt="{{ metric.friendly_name }}" class="metric_detail_img" />
+                            </a>
+                            <div class="card-body pb-0">
+                                <a href="{% url 'premium_access_detail' %}">{{ metric.friendly_name }}</a>
+                            </div>
+                            {% endif %}
                         {% else %}
-                            <!-- Risk metric with no access for non premium members -->
-                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                                <div class="card h-100 border-0">
-                                    <a href="">
-                                        <img src="{{ metric.image_path }}" alt="{{ metric.friendly_name }}" />
-                                    </a>
-                                    <div class="card-body pb-0">
-                                        <p>Purchase Premium to Access Risk Indicator</p>
-                                        <p class="mb-0">{{ metric.friendly_name }}</p>
-                                    </div>
-                                    <div class="card-footer bg-white pt-0 border-0 text-left">
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="lead mb-0 text-left font-weight-bold">${{ metric.price }}</p>
-                                                <small class="text-muted">{{ metric.description }}</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <a href="{% url 'metric_detail' metric.id %}">
+                            <img src="{{ metric.image_path }}" alt="{{ metric.friendly_name }}" class="metric_detail_img" />
+                        </a>
+                        <div class="card-body pb-0">
+                            <a href="{% url 'metric_detail' metric.id %}">{{ metric.friendly_name }}</a>
+                        </div>
                         {% endif %}
-                    {% else %}
-                        <!-- Render all other metrics -->
-                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                            <div class="card h-100 border-0">
-                                <a href="{% url 'metric_detail' metric.id %}">
-                                    <img src="{{ metric.image_path }}" alt="{{ metric.friendly_name }}" />
-                                </a>
-                                <div class="card-body pb-0">
-                                    <p class="mb-0">{{ metric.friendly_name }}</p>
-                                </div>
-                                <div class="card-footer bg-white pt-0 border-0 text-left">
-                                    <div class="row">
-                                        <div class="col">
-                                            <p class="lead mb-0 text-left font-weight-bold">${{ metric.price }}</p>
-                                            <small class="text-muted">{{ metric.description }}</small>
-                                        </div>
-                                    </div>
+                        <div class="card-footer bg-white pt-0 border-0 text-left">
+                            <div class="row">
+                                <div class="col">
+                                    <small class="text-muted">{{ metric.description_short }}</small>
                                 </div>
                             </div>
                         </div>
+                        
+                        
+                    </div>
+                </div>
 
-                    {% endif %}
-                    
 
-                    <!-- Horizontal rules -->
-                    {% if forloop.counter|divisibleby:1 %}
-                    <div class="col-12 d-sm-none mb-5">
-                        <hr>
-                    </div>
-                    {% endif %}
-                    {% if forloop.counter|divisibleby:2 %}
-                    <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
-                        <hr>
-                    </div>
-                    {% endif %}
-                    {% if forloop.counter|divisibleby:3 %}
-                    <div class="col-12 d-none d-lg-block d-xl-none mb-5">
-                        <hr>
-                    </div>
-                    {% endif %}
-                    {% if forloop.counter|divisibleby:4 %}
-                    <div class="col-12 d-none d-xl-block mb-5">
-                        <hr>
-                    </div>
-                    {% endif %}
+                <!-- Horizontal rules -->
+                {% if forloop.counter|divisibleby:1 %}
+                <div class="col-12 d-sm-none mb-5">
+                    <hr>
+                </div>
+                {% endif %}
+                {% if forloop.counter|divisibleby:2 %}
+                <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
+                    <hr>
+                </div>
+                {% endif %}
+                {% if forloop.counter|divisibleby:3 %}
+                <div class="col-12 d-none d-lg-block d-xl-none mb-5">
+                    <hr>
+                </div>
+                {% endif %}
+                {% if forloop.counter|divisibleby:4 %}
+                <div class="col-12 d-none d-xl-block mb-5">
+                    <hr>
+                </div>
+                {% endif %}
                 {% endfor %}
 
             </div>
         </div>
     </div>
-    
+
 </div>
 {% endblock %}

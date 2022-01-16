@@ -11,7 +11,8 @@ from django.utils.translation import gettext as _
 class Metric(models.Model):
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
-    description = models.TextField()
+    description_short = models.TextField()
+    description_long = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
     image_path = models.CharField(max_length=254)
 
