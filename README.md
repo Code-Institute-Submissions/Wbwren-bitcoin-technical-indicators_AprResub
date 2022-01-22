@@ -83,28 +83,6 @@ intuitive, so that I can quickly navigate to the metric I wish.
 * [Desktop View](https://github.com/Wbwren/bitcoin-technical-indicators/blob/master/wireframes/desktop-wireframe.png)
 
 
-# Loading Bitcoin Price Data
-- download bitcoin historical data csv from predered source (e.g. investing.com)
-- edit csv to include the following cols: id, date, price, open, high, low
-- delete header row (just include the data rows)
-- set the date col to the format Y-m-d
-- set all other cols to a type of number (otherwise prices may have ',' symbol which can cause errors)
-- install sqlite extension for visual studio code
-- load the csv to the project root directory
-- use the following commands to load the data into the Django database:
-    .\sqlite3.exe metrics_bitcoin_price_data
-    .mode csv
-    .import btc_price_data.csv metrics_bitcoin_price_data
-
-# Loading metic data
-
-
-
-
-Super user can edit bitcoin price data undert the account section in nav
-
-
-
 ### Features:
 
 #### Plotly graphing
@@ -141,6 +119,10 @@ To display the price charts, the Plotly API for Python was used.
 * <a href="https://jquery.com/">jQuery</a> JavaScript library
 * <a href="https://fonts.google.com/specimen/Nunito">Google Fonts</a>
 * <a href="https://fontawesome.com/">FontAwesome</a>
+
+#### Databases
+* <a href="https://www.sqlite.org/">SQlite3</a> django database queries
+* <a href="https://www.postgresql.org/">PostgreSQL</a> Heroku database service
 
 
 
@@ -307,3 +289,29 @@ MEDIAFILES_LOCATION = 'media'
 23. Ran `git add .`, `git commit -m "my commit message"` and `git push` commands to push all changes to my GitHub repository.
 
 24. Returned to `Heroku` and hit `Deploy Branch` again.
+
+
+
+
+
+
+
+# Loading Bitcoin Price Data
+- download bitcoin historical data csv from predered source (e.g. investing.com)
+- edit csv to include the following cols: id, date, price, open, high, low
+- delete header row (just include the data rows)
+- set the date col to the format Y-m-d
+- set all other cols to a type of number (otherwise prices may have ',' symbol which can cause errors)
+- install sqlite extension for visual studio code
+- load the csv to the project root directory
+- use the following commands to load the data into the Django database:
+    .\sqlite3.exe metrics_bitcoin_price_data
+    .mode csv
+    .import btc_price_data.csv metrics_bitcoin_price_data
+
+# Loading metic data
+
+
+
+
+Super user can edit bitcoin price data undert the account section in nav
