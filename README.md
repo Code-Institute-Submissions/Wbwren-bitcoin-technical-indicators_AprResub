@@ -25,6 +25,41 @@ The project contains the following apps:
 * Checkout
     * Users can purcahse lifetime access to the premium indicator
 
+
+## UX
+
+### User stories
+* As a user, I want to be able to register to the site, so that I can securely login.
+
+    * 
+
+* As a user, I want to be able to sign into my account, so that I have access to the metrics available.
+
+    * 
+
+* As a user, I would like the user experience on the website to be
+intuitive, so that I can quickly navigate to the metric I wish.
+
+    * The user dashboard provides a [minimal and intuitve UI](https://github.com/Wbwren/crypto-porfolio-tracker/blob/master/assets/img/user-dashboard.png)
+
+* As a user, I want to be able to view bitcoin price data, so that I can spot trends in the price action.
+
+    * 
+
+* As a user, I want to be able to view my chosen metric overlayed onto the chart, so that I can easily comprehend the metric.
+
+    * 
+
+* As a user, I want to easily be able to access the cart, so that I can access the premium metric.
+
+    * 
+
+* As an administrator, I want full CRUD functionality of the price data, so that the metrics are kept up to date.
+
+    * 
+
+
+
 # Loading Bitcoin Price Data
 - download bitcoin historical data csv from predered source (e.g. investing.com)
 - edit csv to include the following cols: id, date, price, open, high, low
