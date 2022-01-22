@@ -6,6 +6,24 @@
 The purpose of the project is provide the user with a number of technical indcators for bitcoins price action and encourage them to pay to access the premium metric. The premium metric is a risk indicator, combining the
 other metrics into one and indicating optimal buying and selling oportinities.
 
+The project contains the following apps:
+* Dashboard
+    * Explains the purpose of the site and encourages the user to register.
+
+* Login / registration
+    * Allows user to create an account and login.
+
+* Metrics
+    * Displays all of the currently available metrics.
+
+* Metric Details
+    * Renders a Plotly chart with Bitcoins price and selected indicator.
+
+* Edit price data
+    * Administrators can add price data as required (currently this is not automated)
+
+* Checkout
+    * Users can purcahse lifetime access to the premium indicator
 
 # Loading Bitcoin Price Data
 - download bitcoin historical data csv from predered source (e.g. investing.com)
