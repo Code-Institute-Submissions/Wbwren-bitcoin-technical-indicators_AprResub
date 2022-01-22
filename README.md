@@ -97,19 +97,20 @@ To display the price charts, the Plotly API for Python was used.
 
 ### Technology Used:
 
-* Required: HTML, CSS, JavaScript, Python+Django, Postgres, Stripe payments
-
 #### Languages:
 
 * HTML5
 * CSS3
 * JavaScript
 * Python
+* SQL
 
-#### Libraries, frameworks, tools used
+#### Libraries, Frameworks and Tools
 
 * <a href="https://www.heroku.com/">Heroku</a> for hosting the deployed application
 * <a href="https://www.djangoproject.com/">Django</a> for the project configuration
+* <a href="https://jinja.palletsprojects.com/en/3.0.x/">Jinja2</a> as a templating engine
+* <a href="https://plotly.com/python/">Plotly</a> for graphing the data with Python
 * <a href="https://stripe.com/">Stripe</a> for payments
 * <a href="https://pypi.org/project/psycopg2/">Psycopg2</a> as database adapter
 * <a href="https://gunicorn.org/">Gunicorn</a> as a python web server
