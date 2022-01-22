@@ -127,10 +127,69 @@ To display the price charts, the Plotly API for Python was used.
 
 
 
-# Testing
+## Testing
 - test super user can crud price data
 
 - test non super user cannot crud data
+
+
+### Code Validation
+* HTML was validated using W3C Markup Validation Service.
+
+* CSS was validated using W3C CSS Validation Service - Jigsaw
+
+* JavaScript was passed through the linter jshint with no warnings
+### Functionality test
+| Num | Test                                                                         | Action                              | Outcome image                                                                                                                        | Result |
+|-----|------------------------------------------------------------------------------|-------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------|--------|
+| 1   | Navigation bar links work correctly | Click on each nav icon              | [Image of ](https://github.com/Wbwren/%%%.png) | Pass   |
+| 2   | User registraion requires valid data | Attempt to enter invalid data for each field | [Image of ](https://github.com/Wbwren/%%%.png) | Pass   |
+| 3   | User is sent confirmation email after resistration | Register and see if confirmation email is received | [Image of ](https://github.com/Wbwren/%%%.png) | Pass   |
+| 4   | User can login to site after registraition | Register for site and attempt to login | [Image of ](https://github.com/Wbwren/%%%.png) | Pass   |
+| 5   | User can access the metrics page after logging in | Login and click on metrics link in navbar | [Image of ](https://github.com/Wbwren/%%%.png) | Pass   |
+| 6   | User cannot access risk metric prior to purchasing premium access | Login and click on the risk metric as a non premium member | [Image of ](https://github.com/Wbwren/%%%.png) | Pass   |
+| 7   | User is redirected to Stripe affter clicking the checkout button | Login and click on the checkout button | [Image of ](https://github.com/Wbwren/%%%.png) | Pass   |
+| 8   | User can access risk metric after purchasing premium access | Login and click on the risk metric as a premium member | [Image of ](https://github.com/Wbwren/%%%.png) | Pass   |
+| 9   | After logging out user cannot access any metric | Logout and attempt to redirect to metrics page | [Image of form ](https://github.com/Wbwren/%%%.png) | Pass   |
+| 10   | Administrator can view all bitcoin price data in tabular format | Click on edit price data button | [Image of form ](https://github.com/Wbwren/%%%.png) | Pass   |
+| 11   | Administrator can add a new bitcoin price | Click add new price and enter details for the price | [Image of form ](https://github.com/Wbwren/%%%.png) | Pass   |
+| 12   | Administrator can update an existing bitcoin price | Click the edit button beside a price and attemp the change the details | [Image of form ](https://github.com/Wbwren/%%%.png) | Pass   |
+| 13   | Administrator can delete an existing bitcoin price | Click the delete button beside a price and see if it is removed from the table | [Image of form ](https://github.com/Wbwren/%%%.png) | Pass   |
+
+<br>
+
+### Browser Compatibility
+| Num | Browser         | Test result |
+| ---|:-------------:| :----: |
+| 1 | Chrome | Passed
+| 2 | Opera | Passed
+| 3 | Mozzilla | Passed
+
+<br>
+
+### Responsiveness Testing
+* Chrome developer tools was used to test a wide variety of device sizes and resolutions.
+
+* The website has been tested on an iPhone 5, Samsung Galaxy s10, Acer swift 3 and a desktop PC with a 1080p and 4k monitor.s
+
+### Google Lighthouse Scores
+* [Lighthouse mobile result](https://github.com/Wbwren/waste-matters/blob/master/assets/img/lighthouse-results-mobile.png)
+* [Lighthouse desktop result](https://github.com/Wbwren/waste-matters/blob/master/assets/img/lighthouse-results-desktop.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### Deployment
 
@@ -289,11 +348,6 @@ MEDIAFILES_LOCATION = 'media'
 23. Ran `git add .`, `git commit -m "my commit message"` and `git push` commands to push all changes to my GitHub repository.
 
 24. Returned to `Heroku` and hit `Deploy Branch` again.
-
-
-
-
-
 
 
 # Loading Bitcoin Price Data
