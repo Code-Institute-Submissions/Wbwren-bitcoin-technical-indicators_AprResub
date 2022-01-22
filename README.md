@@ -22,6 +22,46 @@ Super user can edit bitcoin price data undert the account section in nav
 
 
 
+### Features:
+
+#### Plotly graphing
+
+To display the price charts, the Plotly API for Python was used.
+
+### Technology Used:
+
+* Required: HTML, CSS, JavaScript, Python+Django, Postgres, Stripe payments
+
+#### Languages:
+
+* HTML5
+* CSS3
+* JavaScript
+* Python
+
+#### Libraries, frameworks, tools used
+
+* <a href="https://www.heroku.com/">Heroku</a> for hosting the deployed application
+* <a href="https://www.djangoproject.com/">Django</a> for the project configuration
+* <a href="https://stripe.com/">Stripe</a> for payments
+* <a href="https://pypi.org/project/psycopg2/">Psycopg2</a> as database adapter
+* <a href="https://gunicorn.org/">Gunicorn</a> as a python web server
+* <a href="https://code.visualstudio.com/">VSCode</a> as the IDE
+* <a href="https://git-scm.com/">Git</a> for version control
+* <a href="https://github.com">Github</a> remote git storage service
+* <a href="https://validator.w3.org/">W3C Validator</a> Used to check the validity of my HTML and CSS.
+* <a href="http://pep8online.com/">PEP 8 Online Validator</a> Used to validate the Python code.
+* <a href="https://moqups.com">Balsamiq</a> for creating the wireframes.
+* <a href="https://aws.amazon.com/s3/">AWS S3 Bucket</a> for storage of static files
+* <a href="https://boto3.amazonaws.com/v1/documentation/api/latest/guide/quickstart.html">Boto3 </a>to make use of Amazon S3
+* <a href="https://getbootstrap.com/">Bootstrap</a> for developing a responsive, mobile-first website
+* <a href="https://jquery.com/">jQuery</a> JavaScript library
+* <a href="https://fonts.google.com/specimen/Nunito">Google Fonts</a>
+* <a href="https://fontawesome.com/">FontAwesome</a>
+
+
+
+
 # Testing
 - test super user can crud price data
 
