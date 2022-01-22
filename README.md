@@ -1,4 +1,11 @@
 
+# Bitcoin Technical Indicators
+
+## Project purpose: 
+
+The purpose of the project is provide the user with a number of technical indcators for bitcoins price action and encourage them to pay to access the premium metric. The premium metric is a risk indicator, combining the
+other metrics into one and indicating optimal buying and selling oportinities.
+
 
 # Loading Bitcoin Price Data
 - download bitcoin historical data csv from predered source (e.g. investing.com)
