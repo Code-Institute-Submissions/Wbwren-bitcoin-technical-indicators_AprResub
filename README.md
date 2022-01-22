@@ -62,6 +62,12 @@ intuitive, so that I can quickly navigate to the metric I wish.
 
     * 
 
+### Strategy
+__Goal__: Show the user how valuable technical indicators can be when predicating Bitcoin price movements and encourage them to purchase the premium metric.
+
+
+### Scope
+* A dynmic web app that implements the Plotly API to display Bitcoin price data in conjunction with relvent technical indicators. 
 
 ### Design and colors:
 
