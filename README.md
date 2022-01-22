@@ -58,7 +58,9 @@ intuitive, so that I can quickly navigate to the metric I wish.
 
     * 
 
+* As the site owner, I want the checkout functionality to be secure, so that a user cannot access the premium metric without paying.
 
+    * 
 
 # Loading Bitcoin Price Data
 - download bitcoin historical data csv from predered source (e.g. investing.com)
