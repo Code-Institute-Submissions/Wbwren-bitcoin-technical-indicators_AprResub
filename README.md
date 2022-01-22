@@ -62,6 +62,27 @@ intuitive, so that I can quickly navigate to the metric I wish.
 
     * 
 
+
+### Design and colors:
+
+#### Fonts:
+
+%% was used for the font and %% as the backup font.
+
+#### Colors:
+
+* %% - font color
+
+* %% - card, media background color
+
+#### Wireframes
+* [Mobile View](https://github.com/Wbwren/bitcoin-technical-indicators/blob/master/wireframes/mobile-wireframe.png)
+
+* [Tablet View](https://github.com/Wbwren/bitcoin-technical-indicators/blob/master/wireframes/tablet-wireframe.png)
+
+* [Desktop View](https://github.com/Wbwren/bitcoin-technical-indicators/blob/master/wireframes/desktop-wireframe.png)
+
+
 # Loading Bitcoin Price Data
 - download bitcoin historical data csv from predered source (e.g. investing.com)
 - edit csv to include the following cols: id, date, price, open, high, low
