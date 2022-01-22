@@ -155,6 +155,7 @@ To display the price charts, the Plotly API for Python was used.
 | 11   | Administrator can add a new bitcoin price | Click add new price and enter details for the price | [Image of form ](https://github.com/Wbwren/%%%.png) | Pass   |
 | 12   | Administrator can update an existing bitcoin price | Click the edit button beside a price and attemp the change the details | [Image of form ](https://github.com/Wbwren/%%%.png) | Pass   |
 | 13   | Administrator can delete an existing bitcoin price | Click the delete button beside a price and see if it is removed from the table | [Image of form ](https://github.com/Wbwren/%%%.png) | Pass   |
+| 14   | Non administrator cannot access edit price page | Login as a standard user and attempt to redirect to edit price data page | [Image of form ](https://github.com/Wbwren/%%%.png) | Pass   |
 
 <br>
 
@@ -170,23 +171,11 @@ To display the price charts, the Plotly API for Python was used.
 ### Responsiveness Testing
 * Chrome developer tools was used to test a wide variety of device sizes and resolutions.
 
-* The website has been tested on an iPhone 5, Samsung Galaxy s10, Acer swift 3 and a desktop PC with a 1080p and 4k monitor.s
+* The website has been tested on a Samsung Galaxy s10, Lenovo Legion and a desktop PC with a 1080p and 4k monitor, respectfully.
 
 ### Google Lighthouse Scores
 * [Lighthouse mobile result](https://github.com/Wbwren/waste-matters/blob/master/assets/img/lighthouse-results-mobile.png)
 * [Lighthouse desktop result](https://github.com/Wbwren/waste-matters/blob/master/assets/img/lighthouse-results-desktop.png)
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
