@@ -31,36 +31,28 @@ The project contains the following apps:
 ### User stories
 * As a user, I want to be able to register to the site, so that I can securely login.
 
-    * 
 
 * As a user, I want to be able to sign into my account, so that I have access to the metrics available.
 
-    * 
 
 * As a user, I would like the user experience on the website to be
 intuitive, so that I can quickly navigate to the metric I wish.
 
-    * The user dashboard provides a [minimal and intuitve UI](https://github.com/Wbwren/crypto-porfolio-tracker/blob/master/assets/img/user-dashboard.png)
 
 * As a user, I want to be able to view bitcoin price data, so that I can spot trends in the price action.
 
-    * 
 
 * As a user, I want to be able to view my chosen metric overlayed onto the chart, so that I can easily comprehend the metric.
 
-    * 
 
 * As a user, I want to easily be able to access the cart, so that I can access the premium metric.
 
-    * 
 
 * As an administrator, I want full CRUD functionality of the price data, so that the metrics are kept up to date.
 
-    * 
 
 * As the site owner, I want the checkout functionality to be secure, so that a user cannot access the premium metric without paying.
 
-    * 
 
 ### Strategy
 __Goal__: Show the user how valuable technical indicators can be when predicating Bitcoin price movements and encourage them to purchase the premium metric.
@@ -75,11 +67,6 @@ __Goal__: Show the user how valuable technical indicators can be when predicatin
 
 %% was used for the font and %% as the backup font.
 
-#### Colors:
-
-* %% - font color
-
-* %% - card, media background color
 
 #### Wireframes
 * [Mobile View](https://github.com/Wbwren/bitcoin-technical-indicators/blob/master/wireframes/mobile-wireframe.png)
@@ -366,15 +353,7 @@ MEDIAFILES_LOCATION = 'media'
     .mode csv
     .import btc_price_data.csv metrics_bitcoin_price_data
 
-# Loading metic data
 
-
-
-
-# Administrator CRUD Functionality
-
-
-Super user can edit bitcoin price data under the account section in nav
 
 # Acknowledgments
 A special thanks to my mentor Brian Macharia for his invaluable guidance throughout this project and the the entire program.
