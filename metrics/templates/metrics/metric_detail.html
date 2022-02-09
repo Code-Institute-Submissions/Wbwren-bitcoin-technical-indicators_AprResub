@@ -10,6 +10,14 @@
 {% endblock %}
 
 {% block content %}
+
+{% if metric_id == 1 %}
+{% if not is_premium_member %}
+<!-- Redirect non premium members if the metric is the risk metric -->
+<meta http-equiv="REFRESH" content="0;url={% url 'premium_access_detail' %}">
+{% else %}
+
+<!-- Rebder the risk metric for premium members -->
 <div class="overlay"></div>
 <div class="container-fluid">
     <!-- Plotly chart with bitcoin price and choosen metric -->
@@ -34,6 +42,35 @@
     </div>
 
 </div>
+{% endif %}
+
+{% else %}
+<!-- Render other metrics for any type of user -->
+<div class="overlay"></div>
+<div class="container-fluid">
+    <!-- Plotly chart with bitcoin price and choosen metric -->
+    <div id="chart">
+        {% autoescape off %}
+        {{ plot_div }}
+        {% endautoescape %}
+    </div>
+
+    <!-- Metric description and tutorial -->
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
+            <div class="image-container my-5">
+                <img class="card-img-top img-fluid" src="#" alt="{{ metric.friendly_name }}">
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="product-details-container mb-5 mt-md-5">
+                <p class="mt-3">{{ metric.description }}</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endif %}
 {% endblock %}
 
 

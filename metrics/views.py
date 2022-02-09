@@ -18,9 +18,8 @@ def all_metrics(request):
 
     context = {
         "metrics": metrics,
+        "is_premium_member" : is_premium_member(request),
     }
-
-    request = is_premium_member(request)
 
     return render(request, "metrics/metrics.html", context)
 
@@ -29,6 +28,9 @@ def metric_detail(request, metric_id):
     """View to display an individual metric"""
     if request.user.is_anonymous:
         return render(request, "home/index.html")
+
+    if not is_premium_member(request) and metric_id == 1:
+        return render(request, "checkout/premium_access_detail.html")
 
     # Connect to database and retrieve bitcoin price data
     conn = sqlite3.connect("db.sqlite3")
@@ -79,6 +81,12 @@ def metric_detail(request, metric_id):
     # Getting HTML needed to render the plot.
     plot_div = plot({"data": fig}, output_type="div")
 
-    request = is_premium_member(request)
 
-    return render(request, "metrics/metric_detail.html", context={"plot_div": plot_div})
+    context={
+        "plot_div": plot_div,
+        "is_premium_member": is_premium_member(request),
+        "metric_id": int(metric_id)
+    }
+
+
+    return render(request, "metrics/metric_detail.html", context)
