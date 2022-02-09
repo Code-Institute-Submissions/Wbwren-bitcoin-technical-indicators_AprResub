@@ -27,7 +27,6 @@ Flask==2.0.1
 funcsigs==1.0.2
 future==0.18.2
 greenlet==1.1.2
-heroku==7.0.0
 idna==3.2
 iniconfig==1.1.1
 itsdangerous==2.0.1
