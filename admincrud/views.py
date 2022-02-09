@@ -30,11 +30,11 @@ def edit_date(request, date):
         form = BitcoinForm(request.POST, request.FILES, instance=day)
         if form.is_valid():
             form.save()
-            messages.success(request, "Successfully updated product!")
+            messages.success(request, "Successfully updated price!")
             return redirect(reverse("admincrud"))
         else:
             messages.error(
-                request, "Failed to update product. Please ensure the form is valid."
+                request, "Failed to update price. Please ensure the form is valid."
             )
     else:
         form = BitcoinForm(instance=day)
@@ -59,7 +59,7 @@ def add_price_data(request):
             return redirect(reverse("add_price_data"))
         else:
             messages.error(
-                request, "Failed to add product. Please ensure the form is valid."
+                request, "Failed to add price. Please ensure the form is valid."
             )
     else:
         form = BitcoinForm()
