@@ -16,7 +16,6 @@
 
 
     {% block corecss %}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato&display=swap">
@@ -49,54 +48,51 @@
 
 <body>
     <header class="container-fluid fixed-top">
-        <div id="topnav" class="row">
-            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
-                <a href="{% url 'home' %}" class="nav-link main-logo-link">
-                    <h2 class="logo-font text-black my-0">Bitcoin Techinal Indicators</h2>
-                </a>
-            </div>
-            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
-                <ul class="list-inline list-unstyled text-center text-lg-right my-0">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="{% url 'home' %}">Bitcoin Techinal Indicators</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
                     {% if request.user.is_authenticated %}
-                    <li class="list-inline-item">
-                        <a href="{% url 'metrics' %}">Metrics</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'metrics' %}">Metrics</a>
                     </li>
                     {% endif %}
-                    <li class="list-inline-item dropdown">
-                        <a class="text-black nav-link" href="#" id="user-options" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            <div class="text-center">
-                                <div><i class="fas fa-user fa-lg"></i></div>
-                                <p class="my-0">Account</p>
-                            </div>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Account
                         </a>
-                        <div class="dropdown-menu border-0" aria-labelledby="user-options">
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             {% if request.user.is_authenticated %}
                             {% if request.user.is_superuser %}
-                            <a href="{% url 'admincrud' %}" class="dropdown-item">Edit Price Data</a>
+                            <a class="dropdown-item" href="{% url 'admincrud' %}">Edit Price Data</a>
                             {% endif %}
-                            <a href="" class="dropdown-item">My Profile</a>
-                            <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
+                            <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
                             {% else %}
-                            <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
-                            <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+                            <a class="dropdown-item" href="{% url 'account_signup' %}">Register</a>
+                            <a class="dropdown-item" href="{% url 'account_login' %}">Login</a>
                             {% endif %}
                         </div>
                     </li>
                     {% if request.user.is_authenticated %}
                     {% if not is_premium_member %}
-                    <li class="list-inline-item">
-                        <a href="{% url 'premium_access_detail' %}">Purchase Premium Access</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'premium_access_detail' %}">Purchase Premium Access</a>
                     </li>
-                    {% else %} 
-                    <li class="list-inline-item">
-                        <a href="{% url 'metric_detail' 'risk_indicator' %}">Risk Indicator</a>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'metric_detail' 'risk_indicator' %}">Risk Indicator</a>
                     </li>
                     {% endif %}
                     {% endif %}
                 </ul>
             </div>
-        </div>
+        </nav>
     </header>
 
     {% if messages %}
@@ -106,8 +102,8 @@
     {% block page_header %}
     {% endblock %}
     <div class='container'>
-    {% block content %}
-    {% endblock %}
+        {% block content %}
+        {% endblock %}
     </div>
 
     {% block postloadjs %}
