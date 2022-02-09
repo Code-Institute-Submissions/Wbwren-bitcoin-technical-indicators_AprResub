@@ -3,6 +3,7 @@ import stripe
 from home.context_processor import is_premium_member
 
 from bitcoin_technical_indicators.settings import STRIPE_SECRET_KEY
+from metrics.views import metric_detail
 
 
 def checkout(request):
@@ -31,15 +32,26 @@ def checkout(request):
     return redirect(session.url, code=303)
 
 def premium_access_detail(request):
-    request = is_premium_member(request)
-    return render(request, "checkout/premium_access_detail.html")
+
+    context = {
+        "is_premium_member": is_premium_member(request)
+    }
+    return render(request, "checkout/premium_access_detail.html", context)
 
 
 def checkout_successful(request):
-    request = is_premium_member(request)
-    return render(request, "checkout/checkout_successful.html")
+
+    context = {
+        "is_premium+member": is_premium_member(request)
+    }
+    
+    return render(request, "checkout/checkout_successful.html", context)
 
 
 def checkout_unsuccessful(request):
-    request = is_premium_member(request)
-    return render(request, "checkout/checkout_unsuccessful.html")
+
+    context = {
+        "is_premium+member": is_premium_member(request)
+    }
+
+    return render(request, "checkout/checkout_unsuccessful.html", context)

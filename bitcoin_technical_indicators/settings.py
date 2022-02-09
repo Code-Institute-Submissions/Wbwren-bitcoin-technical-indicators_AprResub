@@ -15,12 +15,14 @@ import environ
 import os
 import dj_database_url
 
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-env = environ.Env()
-environ.Env.read_env(os.path.join(BASE_DIR, "bitcoin_technical_indicators/.env"))
+# env = os.environ.Env()
+# os.environ.Env.read_env(os.path.join(BASE_DIR, "bitcoin_technical_indicators/.env"))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -29,7 +31,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, "bitcoin_technical_indicators/.env")
 SECRET_KEY = env("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env("DJANGO_SECRET_KEY")
+DEBUG = env("DEBUG")
 
 ALLOWED_HOSTS = ["bitcoin-technical-indicators.herokuapp.com", "127.0.0.1"]
 
@@ -109,8 +111,8 @@ WSGI_APPLICATION = "bitcoin_technical_indicators.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-if "DATABASE_URL" in env:
-    DATABASES = {"default": dj_database_url.parse(env("DATABASE_URL"))}
+if "DATABASE_URL" in os.environ:
+    DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}
 else:
     DATABASES = {
         "default": {
@@ -174,8 +176,8 @@ if "USE_AWS" in os.environ:
     # Bucket Config
     AWS_STORAGE_BUCKET_NAME = "bitcoin-technical-indicators"
     AWS_S3_REGION_NAME = "eu-west-1"
-    AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
-    AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+    AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY")
     AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
 
     # Static and media files

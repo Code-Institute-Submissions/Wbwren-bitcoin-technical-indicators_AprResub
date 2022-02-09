@@ -12,13 +12,17 @@ def index(request):
     if request.user.is_anonymous:
         return render(request, "home/index.html")
 
-    request = is_premium_member(request)
+    context = {
+        "is_premium_member": is_premium_member(request),
+    }
 
-    return render(request, "home/index.html")
+    return render(request, "home/index.html", context)
 
 
 def logout(request):
 
-    request = is_premium_member(request)
+    context = {
+        "is_premium_member": is_premium_member(request),
+    }
 
-    return render(request, "home/logout.html")
+    return render(request, "home/logout.html", context)

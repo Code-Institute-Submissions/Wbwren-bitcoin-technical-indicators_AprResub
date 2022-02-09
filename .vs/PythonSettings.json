@@ -1,4 +1,5 @@
 {
   "TestFramework": "Pytest",
-  "Interpreter": "Global|PythonCore|3.9"
+  "Interpreter": "Global|PythonCore|3.9",
+  "cornflakes.linter.executablePath": "path/to/venvs/myvenv/bin/flake8"
 }

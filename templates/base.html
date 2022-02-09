@@ -16,6 +16,7 @@
 
 
     {% block corecss %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato&display=swap">
@@ -82,14 +83,16 @@
                             {% endif %}
                         </div>
                     </li>
-                    {% if not request.META.premium_member %}
+                    {% if request.user.is_authenticated %}
+                    {% if not is_premium_member %}
                     <li class="list-inline-item">
                         <a href="{% url 'premium_access_detail' %}">Purchase Premium Access</a>
                     </li>
                     {% else %} 
                     <li class="list-inline-item">
-                        <a href="{% url 'metric_detail' 5 %}">Risk Indicator</a>
+                        <a href="{% url 'metric_detail' 1 %}">Risk Indicator</a>
                     </li>
+                    {% endif %}
                     {% endif %}
                 </ul>
             </div>
@@ -102,9 +105,10 @@
 
     {% block page_header %}
     {% endblock %}
-
+    <div class='container'>
     {% block content %}
     {% endblock %}
+    </div>
 
     {% block postloadjs %}
     {% endblock %}

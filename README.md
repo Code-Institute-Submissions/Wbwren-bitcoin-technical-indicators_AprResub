@@ -135,10 +135,6 @@ To display the price charts, the Plotly API for Python was used.
 
 
 ## Testing
-- test super user can crud price data
-
-- test non super user cannot crud data
-
 
 ### Code Validation
 * HTML was validated using W3C Markup Validation Service.
@@ -179,10 +175,6 @@ To display the price charts, the Plotly API for Python was used.
 * Chrome developer tools was used to test a wide variety of device sizes and resolutions.
 
 * The website has been tested on a Samsung Galaxy s10, Lenovo Legion and a desktop PC with a 1080p and 4k monitor, respectfully.
-
-### Google Lighthouse Scores
-* [Lighthouse mobile result](https://github.com/Wbwren/waste-matters/blob/master/assets/img/lighthouse-results-mobile.png)
-* [Lighthouse desktop result](https://github.com/Wbwren/waste-matters/blob/master/assets/img/lighthouse-results-desktop.png)
 
 
 
@@ -362,6 +354,9 @@ MEDIAFILES_LOCATION = 'media'
 # Loading metic data
 
 
+
+
+# Administrator CRUD Functionality
 
 
 Super user can edit bitcoin price data undert the account section in nav

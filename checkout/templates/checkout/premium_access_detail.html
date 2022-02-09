@@ -9,12 +9,13 @@
     risk metric will ranfe from 1-10 and depending on the current risk level,
     you will be advised to buy or sell, depening on the chossen risk level.
 </p>
-{% if request.META.premium_member %}
 
-{% else %}
-
-{% endif %}
 <form action="{% url 'checkout' %}" method="POST">{% csrf_token %}
+
+    {% if is_premium_member %}
+    <i>You are already a premium member</i>
+    {% else %}
     <button type="submit">Checkout</button>
+    {% endif %}
 </form>
 {% endblock %}

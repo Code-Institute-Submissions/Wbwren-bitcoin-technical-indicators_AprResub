@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, redirect, render, reverse
 from django.contrib import messages
-from metrics.models import Bitcoin_Price_Data
+from metrics.models import BitcoinPriceData
 from .forms import BitcoinForm
 
 
@@ -10,7 +10,7 @@ from .forms import BitcoinForm
 
 def admincrud(request):
     """A view to return the index page"""
-    btc = Bitcoin_Price_Data.objects.all()
+    btc = BitcoinPriceData.objects.all()
     context = {
         "btc": btc,
     }
@@ -19,13 +19,13 @@ def admincrud(request):
 
 
 def delete_date(request, date):
-    get_object_or_404(Bitcoin_Price_Data, date=date).delete()
+    get_object_or_404(BitcoinPriceData, date=date).delete()
     return redirect(reverse("admincrud"))
 
 
 def edit_date(request, date):
     """Edit daily price data"""
-    day = get_object_or_404(Bitcoin_Price_Data, date=date)
+    day = get_object_or_404(BitcoinPriceData, date=date)
     if request.method == "POST":
         form = BitcoinForm(request.POST, request.FILES, instance=day)
         if form.is_valid():
