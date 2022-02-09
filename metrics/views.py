@@ -24,12 +24,12 @@ def all_metrics(request):
     return render(request, "metrics/metrics.html", context)
 
 
-def metric_detail(request, metric_id):
+def metric_detail(request, metric_name):
     """View to display an individual metric"""
     if request.user.is_anonymous:
         return render(request, "home/index.html")
 
-    if not is_premium_member(request) and metric_id == 1:
+    if not is_premium_member(request) and metric_name == 1:
         return render(request, "checkout/premium_access_detail.html")
 
     # Connect to database and retrieve bitcoin price data
@@ -51,15 +51,15 @@ def metric_detail(request, metric_id):
     fig = px.line(df, x="date", y=df["price"])
 
     # Check which metric is selected and add the appropritate moving averages
-    if int(metric_id) == 1:
+    if metric_name == "risk_indicator":
         fig.add_scatter(name="SMAR", x=df["date"], y=df["SMAR"], line_color="green")
         fig.add_hline(y=0.9, line_color="red")
-    if int(metric_id) == 3:
+    if metric_name == "50DMA_200DMA":
         fig.add_scatter(name="50DMA", x=df["date"], y=df["50DMA"])
         fig.add_scatter(name="200DMA", x=df["date"], y=df["200DMA"])
-    elif int(metric_id) == 4:
+    elif metric_name == "200WMA":
         fig.add_scatter(name="200WMA", x=df["date"], y=df["200WMA"])
-    elif int(metric_id) == 5:
+    elif metric_name == "pi_cycle_top":
         fig.add_scatter(name="111DMA", x=df["date"], y=df["111DMA"])
         fig.add_scatter(name="350DMA*2", x=df["date"], y=df["350DMA*2"])
         fig.add_vline(
@@ -85,7 +85,7 @@ def metric_detail(request, metric_id):
     context={
         "plot_div": plot_div,
         "is_premium_member": is_premium_member(request),
-        "metric_id": int(metric_id)
+        "metric_name": metric_name
     }
 
 

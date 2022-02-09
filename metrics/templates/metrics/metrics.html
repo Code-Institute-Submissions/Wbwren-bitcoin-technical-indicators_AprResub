@@ -23,11 +23,11 @@
                         if so, check if the user is a premium member -->
                         {% if metric.name == 'risk_indicator' %}
                             {% if is_premium_member %}
-                            <a href="{% url 'metric_detail' metric.id %}">
+                            <a href="{% url 'metric_detail' metric.name %}">
                                 <img src="{{ metric.image_path }}" alt="{{ metric.friendly_name }}" class="metric_detail_img" />
                             </a>
                             <div class="card-body pb-0">
-                                <a href="{% url 'metric_detail' metric.id %}">{{ metric.friendly_name }}</a>
+                                <a href="{% url 'metric_detail' metric.name %}">{{ metric.friendly_name }}</a>
                             </div>
                             {% else %}
                             <a href="{% url 'premium_access_detail' %}">
@@ -38,11 +38,11 @@
                             </div>
                             {% endif %}
                         {% else %}
-                        <a href="{% url 'metric_detail' metric.id %}">
+                        <a href="{% url 'metric_detail' metric.name %}">
                             <img src="{{ metric.image_path }}" alt="{{ metric.friendly_name }}" class="metric_detail_img" />
                         </a>
                         <div class="card-body pb-0">
-                            <a href="{% url 'metric_detail' metric.id %}">{{ metric.friendly_name }}</a>
+                            <a href="{% url 'metric_detail' metric.name %}">{{ metric.friendly_name }}</a>
                         </div>
                         {% endif %}
                         <div class="card-footer bg-white pt-0 border-0 text-left">
