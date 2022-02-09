@@ -338,6 +338,21 @@ MEDIAFILES_LOCATION = 'media'
 24. Returned to `Heroku` and hit `Deploy Branch` again.
 
 
+## Clone
+1. Follow this link to my [Github Repository](https://github.com/Wbwren/bitcoin-technical-indicators).
+
+2. Click 'Clone or Download'.
+
+3. In the Clone with HTTPs section, click the 'copy' icon.
+
+4. In your local Integrated Development Environment open Git Bash.
+
+5. Change the current working directory to where you want the cloned directory to be located.
+
+6. Type 'git clone', and paste the URL you copied before.
+
+7. Press enter and your local clone will be available.
+
 # Loading Bitcoin Price Data
 - download bitcoin historical data csv from predered source (e.g. investing.com)
 - edit csv to include the following cols: id, date, price, open, high, low
@@ -359,4 +374,7 @@ MEDIAFILES_LOCATION = 'media'
 # Administrator CRUD Functionality
 
 
-Super user can edit bitcoin price data undert the account section in nav
+Super user can edit bitcoin price data under the account section in nav
+
+# Acknowledgments
+A special thanks to my mentor Brian Macharia for his invaluable guidance throughout this project and the the entire program.
