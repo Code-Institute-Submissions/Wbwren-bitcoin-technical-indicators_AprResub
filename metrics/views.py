@@ -1,9 +1,11 @@
+from traceback import print_tb
 from django.shortcuts import render
 from .models import Metric
 from plotly.offline import plot
 import plotly.express as px
 from plotly.graph_objs import *
-import sqlite3
+from metrics.models import BitcoinPrice
+import psycopg2
 import pandas as pd
 from home.context_processor import is_premium_member
 
@@ -33,17 +35,19 @@ def metric_detail(request, metric_name):
         return render(request, "checkout/premium_access_detail.html")
 
     # Connect to database and retrieve bitcoin price data
-    conn = sqlite3.connect("db.sqlite3")
-    sql_query = pd.read_sql_query("""SELECT * FROM metrics_bitcoin_price_data""", conn)
-    df = pd.DataFrame(sql_query, columns=["date", "open", "price", "high", "low"])
+    # query result must be reversed so that the moving averages are
+    # calculated in the correct direction
+    df = pd.DataFrame(reversed(list(BitcoinPrice.objects.all().values())))
+   
+    print(df.iloc[:, 2])
 
     # Calculate moving averages using dataframe
-    df["111DMA"] = df.iloc[:, 1].rolling(window=111).mean()
-    df["350DMA*2"] = (df.iloc[:, 1].rolling(window=350).mean()) * 2
-    df["350DMA"] = df.iloc[:, 1].rolling(window=350).mean()
-    df["200WMA"] = df.iloc[:, 1].rolling(window=1400).mean()
-    df["50DMA"] = df.iloc[:, 1].rolling(window=50).mean()
-    df["200DMA"] = df.iloc[:, 1].rolling(window=200).mean()
+    df["111DMA"] = df.iloc[:, 2].rolling(window=111).mean()
+    df["350DMA*2"] = (df.iloc[:, 2].rolling(window=350).mean()) * 2
+    df["350DMA"] = df.iloc[:, 2].rolling(window=350).mean()
+    df["200WMA"] = df.iloc[:, 2].rolling(window=1400).mean()
+    df["50DMA"] = df.iloc[:, 2].rolling(window=50).mean()
+    df["200DMA"] = df.iloc[:, 2].rolling(window=200).mean()
 
     # Calculate the Simple moving average ratio
     df["SMAR"] = df["50DMA"] / df["350DMA"]
@@ -78,15 +82,13 @@ def metric_detail(request, metric_name):
     # Set the y axis to a logarithmic scale
     fig.update_yaxes(type="log", range=[-1, 5])
 
-    # Getting HTML needed to render the plot.
+    # Get HTML needed to render the plot.
     plot_div = plot({"data": fig}, output_type="div")
-
 
     context={
         "plot_div": plot_div,
         "is_premium_member": is_premium_member(request),
         "metric_name": metric_name
     }
-
-
+    
     return render(request, "metrics/metric_detail.html", context)
