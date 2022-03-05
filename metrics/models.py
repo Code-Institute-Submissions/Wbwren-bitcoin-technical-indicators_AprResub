@@ -1,11 +1,8 @@
-from email.mime import image
 from django.db import models
 from django.utils.translation import gettext as _
 
-# Create your models here.
+
 """Model containing details of all bitcoin metrics"""
-
-
 class Metric(models.Model):
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
@@ -22,12 +19,10 @@ class Metric(models.Model):
 
 
 """Model containing bitcoin price data"""
-
-
-class BitcoinPriceData(models.Model):
+class BitcoinPrice(models.Model):
     date = models.DateField(_("date"))
     price = models.FloatField(_("price"))
     class Meta: 
-        verbose_name = "Bitcoin Price Data"
-        verbose_name_plural = "Bitcoin Price Data"
+        verbose_name = "Bitcoin Price"
+        verbose_name_plural = "Bitcoin Price"
     

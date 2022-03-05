@@ -10,34 +10,44 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+from asyncio.windows_events import NULL
 from pathlib import Path
 import environ
 import os
 import dj_database_url
+
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
 
 env = environ.Env()
 environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 
 # env = os.environ.Env()
-# os.environ.Env.read_env(os.path.join(BASE_DIR, "bitcoin_technical_indicators/.env"))
+env.read_env(os.path.join(BASE_DIR, "bitcoin_technical_indicators/.env"))
+# environ.Env.read_env(os.path.join(BASE_DIR, "/.env"))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = env('DEBUG')
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env("DJANGO_SECRET_KEY")
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
 
 ALLOWED_HOSTS = ["bitcoin-technical-indicators.herokuapp.com", "127.0.0.1"]
 
 
 # Application definition
-
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -97,7 +107,6 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 SITE_ID = 1
-
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
@@ -105,21 +114,20 @@ ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = "/accounts/login/"
 LOGIN_REDIRECT_URL = "/"
-
 WSGI_APPLICATION = "bitcoin_technical_indicators.wsgi.application"
 
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-if "DATABASE_URL" in os.environ:
-    DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}
-else:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-        }
-    }
+if "DATABASE_URL" in env.ENVIRON:
+    DATABASES = {"default": dj_database_url.parse(env("DATABASE_URL"))}
+# else:
+    # DATABASES = {
+    #     "default": {
+    #         "ENGINE": "django.db.backends.sqlite3",
+    #         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+    #     }
+    # }
 
 
 # Password validation
@@ -166,7 +174,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
-if "USE_AWS" in os.environ:
+if "USE_AWS" in env.ENVIRON:
     # Cache control
     AWS_S3_OBJECT_PARAMETERS = {
         "Expires": "Thu, 31 Dec 2099 20:00:00 GMT",
@@ -204,7 +212,7 @@ STRIPE_SECRET_KEY = env("STRIPE_SECRET_KEY")
 STRIPE_WH_SECRET = env("STRIPE_WH_SECRET")
 
 
-if "DEVELOPMENT" in os.environ:
+if "DEVELOPMENT" in env.ENVIRON:
     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
     DEFAULT_FROM_EMAIL = "bitcoin-tech-indicators@example.com"
 else:

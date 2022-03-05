@@ -341,17 +341,19 @@ MEDIAFILES_LOCATION = 'media'
 7. Press enter and your local clone will be available.
 
 # Loading Bitcoin Price Data
-- download bitcoin historical data csv from predered source (e.g. investing.com)
+- download bitcoin historical data csv from prefered source (e.g. investing.com)
 - edit csv to include the following cols: id, date, price, open, high, low
 - delete header row (just include the data rows)
 - set the date col to the format Y-m-d
 - set all other cols to a type of number (otherwise prices may have ',' symbol which can cause errors)
 - install sqlite extension for visual studio code
 - load the csv to the project root directory
-- use the following commands to load the data into the Django database:
-    .\sqlite3.exe metrics_bitcoin_price_data
+- use the following commands to load the data into the postgres database:
+    .\sqlite3.exe metrics_bitcoin_price
     .mode csv
-    .import btc_price_data.csv metrics_bitcoin_price_data
+    .import btc_price_data.csv metrics_bitcoin_price;
+
+    \copy metrics_bitcoinprice from '<path/to/csv>' csv header;
 
 
 

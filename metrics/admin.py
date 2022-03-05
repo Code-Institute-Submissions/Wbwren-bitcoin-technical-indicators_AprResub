@@ -1,7 +1,6 @@
 from django.contrib import admin
-from .models import Metric, BitcoinPriceData
+from .models import Metric, BitcoinPrice
 
-# Register your models here.
 class MetricAdmin(admin.ModelAdmin):
     list_display = (
         "friendly_name",
@@ -20,4 +19,4 @@ class PriceAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Metric, MetricAdmin)
-admin.site.register(BitcoinPriceData, PriceAdmin)
+admin.site.register(BitcoinPrice, PriceAdmin)

@@ -3,7 +3,6 @@ import stripe
 from home.context_processor import is_premium_member
 
 from bitcoin_technical_indicators.settings import STRIPE_SECRET_KEY
-from metrics.views import metric_detail
 
 
 def checkout(request):

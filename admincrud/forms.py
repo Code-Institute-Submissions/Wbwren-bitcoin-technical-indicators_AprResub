@@ -1,16 +1,16 @@
 from django import forms
-from metrics.models import BitcoinPriceData
+from metrics.models import BitcoinPrice
 
 
 class BitcoinForm(forms.ModelForm):
     class Meta:
-        model = BitcoinPriceData
+        model = BitcoinPrice
         verbose_name_plural = "Bitcoin price data"
         fields = "__all__"
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        dates = BitcoinPriceData.objects.all()
+        dates = BitcoinPrice.objects.all()
         friendly_names = [(d.id, d.date) for d in dates]
 
         self.fields["date"].choices = friendly_names

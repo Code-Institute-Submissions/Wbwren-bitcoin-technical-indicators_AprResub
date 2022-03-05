@@ -3,7 +3,6 @@
 Python 3.6 or newer required.
 """
 import json
-import os
 import stripe
 
 # This is your test secret API key.
