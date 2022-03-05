@@ -23,7 +23,7 @@
                         if so, check if the user is a premium member -->
                         {% if metric.name == 'risk_indicator' %}
                             {% if is_premium_member %}
-                            <a href="{% url 'metric_detail' metric.name %}">
+                            <a href="{% url 'metric_detail' metric.id %}">
                                 <img src="{{ metric.image_path }}" alt="{{ metric.friendly_name }}" class="metric_detail_img" />
                             </a>
                             <div class="card-body pb-0">

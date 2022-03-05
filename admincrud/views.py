@@ -55,7 +55,7 @@ def add_price_data(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Successfully added date!")
-            return redirect(reverse("add_price_data"))
+            return redirect(reverse("admincrud"))
         else:
             messages.error(
                 request, "Failed to add price. Please ensure the form is valid."

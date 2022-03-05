@@ -20,7 +20,7 @@ class Metric(models.Model):
 
 """Model containing bitcoin price data"""
 class BitcoinPrice(models.Model):
-    date = models.DateField(_("date"))
+    date = models.DateTimeField(_("date"), primary_key=True)
     price = models.FloatField(_("price"))
     class Meta: 
         verbose_name = "Bitcoin Price"

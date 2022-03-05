@@ -31,23 +31,23 @@ def metric_detail(request, metric_name):
     if request.user.is_anonymous:
         return render(request, "home/index.html")
 
-    if not is_premium_member(request) and metric_name == 1:
+    if not is_premium_member(request) and metric_name == 'risk_indicator':
+        print('redirecting')
         return render(request, "checkout/premium_access_detail.html")
+    print('not redirecting')
 
     # Connect to database and retrieve bitcoin price data
     # query result must be reversed so that the moving averages are
     # calculated in the correct direction
     df = pd.DataFrame(reversed(list(BitcoinPrice.objects.all().values())))
    
-    print(df.iloc[:, 2])
-
     # Calculate moving averages using dataframe
-    df["111DMA"] = df.iloc[:, 2].rolling(window=111).mean()
-    df["350DMA*2"] = (df.iloc[:, 2].rolling(window=350).mean()) * 2
-    df["350DMA"] = df.iloc[:, 2].rolling(window=350).mean()
-    df["200WMA"] = df.iloc[:, 2].rolling(window=1400).mean()
-    df["50DMA"] = df.iloc[:, 2].rolling(window=50).mean()
-    df["200DMA"] = df.iloc[:, 2].rolling(window=200).mean()
+    df["111DMA"] = df.iloc[:, 1].rolling(window=111).mean()
+    df["350DMA*2"] = (df.iloc[:, 1].rolling(window=350).mean()) * 2
+    df["350DMA"] = df.iloc[:, 1].rolling(window=350).mean()
+    df["200WMA"] = df.iloc[:, 1].rolling(window=1400).mean()
+    df["50DMA"] = df.iloc[:, 1].rolling(window=50).mean()
+    df["200DMA"] = df.iloc[:, 1].rolling(window=200).mean()
 
     # Calculate the Simple moving average ratio
     df["SMAR"] = df["50DMA"] / df["350DMA"]
@@ -58,7 +58,7 @@ def metric_detail(request, metric_name):
     if metric_name == "risk_indicator":
         fig.add_scatter(name="SMAR", x=df["date"], y=df["SMAR"], line_color="green")
         fig.add_hline(y=0.9, line_color="red")
-    if metric_name == "50DMA_200DMA":
+    elif metric_name == "50DMA_200DMA":
         fig.add_scatter(name="50DMA", x=df["date"], y=df["50DMA"])
         fig.add_scatter(name="200DMA", x=df["date"], y=df["200DMA"])
     elif metric_name == "200WMA":
@@ -78,6 +78,8 @@ def metric_detail(request, metric_name):
         fig.add_vline(
             x="2021-04-11", line_dash="dash", line_width=2, line_color="green"
         )
+    else:
+        return render(request, "home/index.html")
 
     # Set the y axis to a logarithmic scale
     fig.update_yaxes(type="log", range=[-1, 5])

@@ -12,12 +12,8 @@
 {% block content %}
 
 {% if metric_name == risk_metric %}
-{% if not is_premium_member %}
-<!-- Redirect non premium members if the metric is the risk metric -->
-<meta http-equiv="REFRESH" content="0;url={% url 'premium_access_detail' %}">
-{% else %}
-
-<!-- Rebder the risk metric for premium members -->
+{% if is_premium_member%}
+<!-- Render the risk metric for premium members -->
 <div class="overlay"></div>
 <div class="container-fluid">
     <!-- Plotly chart with bitcoin price and choosen metric -->
@@ -42,8 +38,10 @@
     </div>
 
 </div>
+{% else %}
+<div>Unfortunately as you are not a premium member, you can not view the risk metric.
+    If you wish to become a premium member, click here.</div>
 {% endif %}
-
 {% else %}
 <!-- Render other metrics for any type of user -->
 <div class="overlay"></div>
@@ -70,5 +68,7 @@
     </div>
 
 </div>
+
 {% endif %}
+
 {% endblock %}

@@ -11,7 +11,7 @@ class BitcoinForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         dates = BitcoinPrice.objects.all()
-        friendly_names = [(d.id, d.date) for d in dates]
+        friendly_names = [(d.date) for d in dates]
 
         self.fields["date"].choices = friendly_names
         for field_name, field in self.fields.items():

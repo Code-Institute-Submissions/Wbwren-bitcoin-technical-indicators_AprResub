@@ -9,6 +9,7 @@
 </div>
 {% endblock %}
 
+
 {% block content %}
 <div class="container h-100">
     <div class="row h-100">
@@ -25,7 +26,14 @@
                 To view the bitcoin metrics avalable, please <a href="{% url 'account_signup' %}">register</a> or <a href="{% url 'account_login' %}">login</a>
                 {% else %}
                 To view all metrics, click <a href="{% url 'metrics' %}">here</a>. To view the Risk Indicator, click <a href="{% url 'metric_detail' 5 %}">here</a>
+                {% if is_premium_member %}
+                Click here to view the risk metric.
+                {% else %}
+                Click here to purchase the risk indicator.
                 {% endif %}
+                {% endif %}
+
+
             </h2>
         </div>
     </div>

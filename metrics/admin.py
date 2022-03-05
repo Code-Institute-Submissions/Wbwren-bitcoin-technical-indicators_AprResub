@@ -12,7 +12,6 @@ class MetricAdmin(admin.ModelAdmin):
 
 class PriceAdmin(admin.ModelAdmin):
     list_display = (
-        "id",
         "date",
         "price",
     )
