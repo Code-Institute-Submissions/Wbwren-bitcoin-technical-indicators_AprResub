@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-from asyncio.windows_events import NULL
 from pathlib import Path
 import environ
 import os
@@ -119,8 +118,8 @@ WSGI_APPLICATION = "bitcoin_technical_indicators.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-if "DATABASE_URL" in env.ENVIRON:
-    DATABASES = {"default": dj_database_url.parse(env("DATABASE_URL"))}
+# if "DATABASE_URL" in env.ENVIRON:
+DATABASES = {"default": dj_database_url.parse(env("DATABASE_URL"))}
 # else:
     # DATABASES = {
     #     "default": {
@@ -213,14 +212,14 @@ STRIPE_SECRET_KEY = env("STRIPE_SECRET_KEY")
 STRIPE_WH_SECRET = env("STRIPE_WH_SECRET")
 
 
-if "DEVELOPMENT" in env.ENVIRON:
-    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-    DEFAULT_FROM_EMAIL = "bitcoin-tech-indicators@example.com"
-else:
-    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-    EMAIL_USE_TLS = True
-    EMAIL_PORT = 587
-    EMAIL_HOST = "smtp.gmail.com"
-    EMAIL_HOST_USER = env("EMAIL_HOST_USER")
-    EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASS")
-    DEFAULT_FROM_EMAIL = env("EMAIL_HOST_USER")
+# if "DEVELOPMENT" in env.ENVIRON:
+#     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+#     DEFAULT_FROM_EMAIL = "bitcoin-tech-indicators@example.com"
+# else:
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = env("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASS")
+DEFAULT_FROM_EMAIL = env("EMAIL_HOST_USER")
