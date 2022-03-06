@@ -355,7 +355,9 @@ MEDIAFILES_LOCATION = 'media'
 
     \copy metrics_bitcoinprice from '<path/to/csv>' csv header;
 
-
+# Accessing administration CRUD functionality
+* Login to the site with the username and and password of 'wren233@gmail.com' and 'Atlantic99' respectfully.
+* Click 'Edit Price Data' in the navbar.
 
 # Acknowledgments
 A special thanks to my mentor Brian Macharia for his invaluable guidance throughout this project and the the entire program.
