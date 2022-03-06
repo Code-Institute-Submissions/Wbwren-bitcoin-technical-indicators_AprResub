@@ -15,23 +15,22 @@
     <div class="row">
         <div class="col-12 col-md-6">
             <hr>
-            <h2 class="logo-font mb-4">Price Management</h2>
-            <h5 class="text-muted">Edit a Price</h5>
+            <h2 class="logo-font mb-4">Edit Metric</h2>
+            <h5 class="text-muted">{{metric.display_name}}</h5>
             <hr>
         </div>
     </div>
 
     <div class="row">
         <div class="col-12 col-md-6">
-            <table>
-                <form method="POST" action="{% url 'edit_date' date %}" class="form mb-2" enctype="multipart/form-data">
+            <div class="form-group">
+                <form method="POST" action="" class="form mb-2" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {{ form.as_table }}
-                    <a class="btn btn-outline-black rounded-0" href="{% url 'edit_price' %}">Cancel</a>
-                    <button class="btn btn-black rounded-0" type="submit">Update Price</button>
+                    {{ form.as_p }}
+                    <button class="btn btn-black rounded-0" type="submit">Save Changes</button>
+                    <a class="btn btn-outline-black rounded-0" href="{% url 'edit_metric' %}">Cancel</a>
                 </form>
-            </table>
-
+            </div>
         </div>
     </div>
 </div>

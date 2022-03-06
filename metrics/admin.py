@@ -3,10 +3,10 @@ from .models import Metric, BitcoinPrice
 
 class MetricAdmin(admin.ModelAdmin):
     list_display = (
-        "friendly_name",
+        "display_name",
         "name",
-        "price",
-        "description_short",
+        "is_premium_metric",
+        "description",
     )
 
 

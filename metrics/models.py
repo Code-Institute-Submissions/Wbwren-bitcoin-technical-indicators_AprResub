@@ -5,10 +5,10 @@ from django.utils.translation import gettext as _
 """Model containing details of all bitcoin metrics"""
 class Metric(models.Model):
     name = models.CharField(max_length=254)
-    friendly_name = models.CharField(max_length=254, null=True, blank=True)
-    description_short = models.TextField()
-    description_long = models.TextField()
-    price = models.DecimalField(max_digits=6, decimal_places=2)
+    display_name = models.CharField(max_length=254, null=True, blank=True)
+    description = models.TextField()
+    instructions = models.TextField()
+    is_premium_metric = models.BooleanField()
     image_path = models.CharField(max_length=254)
 
     def __str__(self):

@@ -24,31 +24,31 @@
                         {% if metric.name == 'risk_indicator' %}
                             {% if is_premium_member %}
                             <a href="{% url 'metric_detail' metric.name %}">
-                                <img src="{{ metric.image_path }}" alt="{{ metric.friendly_name }}" class="metric_detail_img" />
+                                <img src="{{ metric.image_path }}" alt="{{ metric.display_name }}" class="metric_detail_img" />
                             </a>
                             <div class="card-body pb-0">
-                                <a href="{% url 'metric_detail' metric.name %}">{{ metric.friendly_name }}</a>
+                                <a href="{% url 'metric_detail' metric.name %}">{{ metric.display_name }}</a>
                             </div>
                             {% else %}
                             <a href="{% url 'premium_access_detail' %}">
-                                <img src="{{ metric.image_path }}" alt="{{ metric.friendly_name }}" class="metric_detail_img" />
+                                <img src="{{ metric.image_path }}" alt="{{ metric.display_name }}" class="metric_detail_img" />
                             </a>
                             <div class="card-body pb-0">
-                                <a href="{% url 'premium_access_detail' %}">{{ metric.friendly_name }}</a>
+                                <a href="{% url 'premium_access_detail' %}">{{ metric.display_name }}</a>
                             </div>
                             {% endif %}
                         {% else %}
                         <a href="{% url 'metric_detail' metric.name %}">
-                            <img src="{{ metric.image_path }}" alt="{{ metric.friendly_name }}" class="metric_detail_img" />
+                            <img src="{{ metric.image_path }}" alt="{{ metric.display_name }}" class="metric_detail_img" />
                         </a>
                         <div class="card-body pb-0">
-                            <a href="{% url 'metric_detail' metric.name %}">{{ metric.friendly_name }}</a>
+                            <a href="{% url 'metric_detail' metric.name %}">{{ metric.display_name }}</a>
                         </div>
                         {% endif %}
                         <div class="card-footer bg-white pt-0 border-0 text-left">
                             <div class="row">
                                 <div class="col">
-                                    <small class="text-muted">{{ metric.description_short }}</small>
+                                    <small class="text-muted">{{ metric.description }}</small>
                                 </div>
                             </div>
                         </div>

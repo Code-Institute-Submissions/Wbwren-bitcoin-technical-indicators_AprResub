@@ -118,7 +118,7 @@ WSGI_APPLICATION = "bitcoin_technical_indicators.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-# if "DATABASE_URL" in env.ENVIRON:
+# if env("DATABASE_URL"):
 DATABASES = {"default": dj_database_url.parse(env("DATABASE_URL"))}
 # else:
     # DATABASES = {

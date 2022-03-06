@@ -1,11 +1,10 @@
 from traceback import print_tb
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from .models import Metric
 from plotly.offline import plot
 import plotly.express as px
 from plotly.graph_objs import *
 from metrics.models import BitcoinPrice
-import psycopg2
 import pandas as pd
 from home.context_processor import is_premium_member
 
@@ -32,9 +31,7 @@ def metric_detail(request, metric_name):
         return render(request, "home/index.html")
 
     if not is_premium_member(request) and metric_name == 'risk_indicator':
-        print('redirecting')
         return render(request, "checkout/premium_access_detail.html")
-    print('not redirecting')
 
     # Connect to database and retrieve bitcoin price data
     # query result must be reversed so that the moving averages are
@@ -54,16 +51,20 @@ def metric_detail(request, metric_name):
 
     fig = px.line(df, x="date", y=df["price"])
 
+    
+    metric = get_object_or_404(Metric, name=metric_name)
+    
+    
     # Check which metric is selected and add the appropritate moving averages
-    if metric_name == "risk_indicator":
+    if metric.name == "risk_indicator":
         fig.add_scatter(name="SMAR", x=df["date"], y=df["SMAR"], line_color="green")
         fig.add_hline(y=0.9, line_color="red")
-    elif metric_name == "50DMA_200DMA":
+    elif metric.name == "50DMA_200DMA":
         fig.add_scatter(name="50DMA", x=df["date"], y=df["50DMA"])
         fig.add_scatter(name="200DMA", x=df["date"], y=df["200DMA"])
-    elif metric_name == "200WMA":
+    elif metric.name == "200WMA":
         fig.add_scatter(name="200WMA", x=df["date"], y=df["200WMA"])
-    elif metric_name == "pi_cycle_top":
+    elif metric.name == "pi_cycle_top":
         fig.add_scatter(name="111DMA", x=df["date"], y=df["111DMA"])
         fig.add_scatter(name="350DMA*2", x=df["date"], y=df["350DMA*2"])
         fig.add_vline(
@@ -90,7 +91,7 @@ def metric_detail(request, metric_name):
     context={
         "plot_div": plot_div,
         "is_premium_member": is_premium_member(request),
-        "metric_name": metric_name
+        "metric": metric
     }
     
     return render(request, "metrics/metric_detail.html", context)

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+
+{% endblock %}
+
+{% block content %}
+
+
+<h1>Edit Metrics</h1>
+
+
+<table>
+    
+    <tr>
+        <th>Metric</th>
+        <th>Description</th>
+        <th>Instructions</th>
+      </tr>
+    {% for metric in metrics reversed %}
+    
+    <tr>
+        <td>{{metric.display_name}}</td>
+        <td>{{metric.description}}</td>
+        <td>{{metric.instructions}}</td>
+        <td><a href="{% url 'edit_metric_data' metric.name %}">Edit</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
