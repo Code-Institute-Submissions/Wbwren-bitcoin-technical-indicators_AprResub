@@ -38,7 +38,7 @@ env.read_env(os.path.join(BASE_DIR, "bitcoin_technical_indicators/.env"))
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
+DEBUG = bool(env('DEBUG'))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env("DJANGO_SECRET_KEY")
@@ -174,9 +174,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
-print(env("USE_AWS"))
-if env("USE_AWS") == True:
-    print('shouldnt see')
+
+if bool(env("USE_AWS")) == True:
     # Cache control
     AWS_S3_OBJECT_PARAMETERS = {
         "Expires": "Thu, 31 Dec 2099 20:00:00 GMT",
