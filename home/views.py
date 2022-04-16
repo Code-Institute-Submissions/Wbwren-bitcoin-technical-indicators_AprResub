@@ -9,7 +9,7 @@ def index(request):
     """A view to return the index page"""
     if request.user.is_anonymous:
         return render(request, "home/index.html")
-
+    
     context = {
         "is_premium_member": is_premium_member(request),
     }

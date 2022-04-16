@@ -45,9 +45,11 @@ def delete_date(request, date):
 
 def edit_date(request, date):
     """Edit daily price data"""
+
+    # django decorator here
     
     if not request.user.is_superuser:
-        return redirect(reverse("home"))
+        return redirect(reverse("login"))
 
     day = get_object_or_404(BitcoinPrice, date=date)
     if request.method == "POST":

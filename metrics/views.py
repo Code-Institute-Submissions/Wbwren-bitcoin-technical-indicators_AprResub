@@ -30,6 +30,7 @@ def metric_detail(request, metric_name):
     if request.user.is_anonymous:
         return render(request, "home/index.html")
 
+
     if not is_premium_member(request) and metric_name == 'risk_indicator':
         return render(request, "checkout/premium_access_detail.html")
 
