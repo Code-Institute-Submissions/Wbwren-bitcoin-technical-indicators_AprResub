@@ -1,13 +1,20 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.deletion import CASCADE
-
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 """User profile model which extends the user account model to add premium member status"""
 class Profile(models.Model):
-    user = models.OneToOneField(User, null=True, on_delete=CASCADE)
-    email = models.CharField(max_length=255, null=True)
-    premium_member = models.BooleanField()
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    premium_member = models.BooleanField(null=True, default=False)
 
-    def __str__(self) -> str:
-        return self.email
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()
+
