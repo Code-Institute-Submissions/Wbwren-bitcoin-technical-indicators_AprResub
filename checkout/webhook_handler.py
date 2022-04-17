@@ -14,27 +14,21 @@ class StripeWH_Handler:
         """
         Handle a generic/unknown/unexpected webhook event
         """
-        print('handling evert here ************************')
-        profile = get_object_or_404(Profile, user_id=1)
-        profile.premium_member = True
-        profile.save()
+        
         return HttpResponse(content=f'Unhandled webhook: {event["type"]}', status=200)
 
     def handle_payment_intent_succeeded(self, event):
         """
-        Handle the payment_intent.succeeded webhook from Stripe
+        Handle the payment_intent.succeeded webhook from Stripe by granting the user premium access
         """
-        print('test here')
-        #print(event.data.object.charges.data[0].billing_details.email)
-        # id = 0
-        # email = event.data.object.charges.data[0].billing_details.email
-        # users = User.objects.all()
-        # for user in users:
-        #     if user.email == email:
-        #         id = user.id
-
+        id = 0
+        email = event.data.object.charges.data[0].billing_details.email
+        users = User.objects.all()
+        for user in users:
+            if user.email == email:
+                id = user.id
         
-        profile = get_object_or_404(Profile, user_id=1)
+        profile = get_object_or_404(Profile, user_id=id)
         profile.premium_member = True
         profile.save()
 
@@ -44,8 +38,5 @@ class StripeWH_Handler:
         """
         Handle the payment_intent.payment_failed webhook from Stripe
         """
-        print('fail *(*************')
-        profile = get_object_or_404(Profile, user_id=1)
-        profile.premium_member = True
-        profile.save()
+        
         return HttpResponse(content=f'Webhook: {event["type"]}', status=200)
