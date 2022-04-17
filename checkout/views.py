@@ -1,6 +1,9 @@
-from django.shortcuts import render, redirect
+import imp
+from django.shortcuts import get_object_or_404, render, redirect
 import stripe
 from home.context_processor import is_premium_member
+from home.models import Profile
+from django.contrib.auth.models import User
 
 from bitcoin_technical_indicators.settings import STRIPE_SECRET_KEY
 
@@ -10,7 +13,7 @@ def checkout(request):
         stripe.api_key = STRIPE_SECRET_KEY
         session = stripe.checkout.Session.create(
             line_items=[
-                {
+                {   
                     "price_data": {
                         "currency": "usd",
                         "product_data": {
@@ -22,8 +25,8 @@ def checkout(request):
                 }
             ],
             mode="payment",
-            success_url="https://bitcoin-technical-indicators.herokuapp.com/checkout/checkout_successful",
-            cancel_url="https://bitcoin-technical-indicators.herokuapp.com/checkout/checkout_unsuccessful",
+            success_url="http://127.0.0.1:8000/checkout/checkout_successful",
+            cancel_url="http://127.0.0.1:8000/checkout/checkout_unsuccessful",
         )
     except:
         checkout_unsuccessful(request)
@@ -39,7 +42,7 @@ def premium_access_detail(request):
 
 
 def checkout_successful(request):
-
+    
     context = {
         "is_premium+member": is_premium_member(request)
     }

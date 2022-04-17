@@ -43,7 +43,7 @@ DEBUG = bool(env('DEBUG'))
 SECRET_KEY = env("DJANGO_SECRET_KEY")
 
 
-ALLOWED_HOSTS = ["bitcoin-technical-indicators.herokuapp.com", "127.0.0.1"]
+ALLOWED_HOSTS = ["bitcoin-technical-indicators.herokuapp.com", "127.0.0.1", "localhost"]
 
 
 # Application definition

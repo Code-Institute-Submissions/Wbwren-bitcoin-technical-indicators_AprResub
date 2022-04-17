@@ -27,8 +27,8 @@
                 <form method="POST" action="{% url 'edit_date' date %}" class="form mb-2" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form.as_table }}
-                    <a class="btn btn-outline-black rounded-0" href="{% url 'edit_price' %}">Cancel</a>
-                    <button class="btn btn-black rounded-0" type="submit">Update Price</button>
+                    <a href="{% url 'edit_price' %}">Cancel</a>
+                    <button id="submit-btn" class="btn" type="submit">Update Price</button>
                 </form>
             </table>
 

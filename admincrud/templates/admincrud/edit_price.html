@@ -8,30 +8,42 @@
 {% block content %}
 
 
-<input id="searchDate" type="text" placeholder="Search for a date">
-<!-- <div id="searchButton">Search</div> -->
-<!-- Button trigger modal -->
-<button id="searchButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Search
-  </button>
-<br>
-<a href="{% url 'add_price_data' %}">Add New Price</a>
 
 
-<table>
+
+
+<a href="{% url 'add_price_data' %}">Add New Price<i class="material-icons">add</i></a>
+
+<input type="text" list="coins" />
+    <datalist id="coins">
+      {% for coin in btc %}
+        <option>
+          {{coin.date}}
+        {% endfor %}
+        </option>
+    </datalist>
+    <span id="search-coin-date" href="">Search</span>
+
+
+<table class="table">
     
-
-    {% for c in btc reversed %}
-    
-    <tr>
-        <td>{{c.date}}</td>
-        <td>{{c.price}}</td>
-        <td>{{c.close}}</td>
-        <td>{{c.high}}</td>
-        <td>{{c.low}}</td>
-        <td><a href="{% url 'edit_date' c.date %}">Edit</a></td>
-        <td><a href="{% url 'delete_date' c.date %}">Delete</a></td>
+  <tr>
+      <th scope="col">Date</th>
+      <th scope="col">Price</th>
+      <th scope="col" >Edit</th>
+      <th scope="col" >Delete</th>
     </tr>
-    {% endfor %}
+    {% for coin in btc %}
+  
+  <tr>
+      <td>{{coin.date}}</td>
+      <td>{{coin.price}}</td>
+      <td><a href="{% url 'edit_date' coin.date %}"><i class="material-icons">edit</i></a></td>
+      <td><a href="{% url 'delete_date' coin.date %}"><i class="material-icons">delete</i></a></td>
+  </tr>
+  {% endfor %}
 </table>
+
+
+   
 {% endblock %}

@@ -13,7 +13,7 @@
 {% block content %}
 <div class="container h-100">
     <div class="row h-100">
-        <div class="col-7 col-md-6 my-auto">
+        <div class="col-sm-12 my-auto">
             <h1 class="display-4 logo-font text-black">
                 Welcome,
                 {% if request.user.is_anonymous %}
@@ -21,11 +21,21 @@
                 {{ request.user.first_name }}
                 {% endif %}
             </h1>
-            <h2>
+            <p>Trading Bitcoin using emotions can lead to purchasing when greed levels are high. This is typically the best time to sell.
+                Purchasing Bitcoin when the public narative is fearful, is historicalcally the best time to buy. Basing purchassing and selling deecisiosn 
+                on historical data can be an effective way to navigate the Bitcoin market. The purpose of this website is to present basic technical indicators 
+                which show past trends in Bitcoins price. All of the indicators are simply combinations of Bitcoins price moving averages on a logarithmic scale.
+                Using a logarithmic scale, it can reduce the noise of the tradiational Bitcoin chart and help to visualise trends. There 
+                is also a risk metric which is available to premium users. This risk metric can be used to Dollar cost 
+                average in and out of the market. For example, if the 'risk' levels are extending beyond neutral, it may be time to start selling portions
+                of your portfolio. If the risk metric dips below the neutral level, it may be a good oportunity to gradually Dollar cost average into the 
+                market.
+            </p>
+            <p>
                 {% if request.user.is_anonymous %}
                 To view the bitcoin metrics available, please <a href="{% url 'account_signup' %}">register</a> or <a href="{% url 'account_login' %}">login</a>
                 {% else %}
-                To view all metrics, click <a href="{% url 'metrics' %}">here</a>. To view the Risk Indicator, click <a href="{% url 'metric_detail' 5 %}">here</a>
+                To view all metrics, click <a href="{% url 'metrics' %}">here</a>. To view the Risk Indicator, click <a href="{% url 'metric_detail' 'risk_indicator' %}">here</a>
                 {% if is_premium_member %}
                 Click here to view the risk metric.
                 {% else %}
@@ -33,8 +43,7 @@
                 {% endif %}
                 {% endif %}
 
-
-            </h2>
+            </p>
         </div>
     </div>
 </div>
