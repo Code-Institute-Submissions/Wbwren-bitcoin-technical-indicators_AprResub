@@ -5,7 +5,7 @@ from django.dispatch import receiver
 
 """User profile model which extends the user account model to add premium member status"""
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     premium_member = models.BooleanField(null=True, default=False)
 
 
