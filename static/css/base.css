@@ -3,7 +3,6 @@
   --font: #C5C6C7;
   --header: #66FCF1;
   --navbar: #C5C6C7;
- 
 }
 
 body { 
@@ -19,7 +18,6 @@ h1, h2, a, button, #submit-btn, span {
   color: #66FCF1;
 }
 
-
 #navbar {
   position: relative;
 }
@@ -31,12 +29,6 @@ h1, h2, a, button, #submit-btn, span {
 .table {
   color: var(--font);
 }
-
-
-
-/* * {
-  border: solid 1px yellow;
-} */
 
 .metric_detail_img {
   width: 100%;

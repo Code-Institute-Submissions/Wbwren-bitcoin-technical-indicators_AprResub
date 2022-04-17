@@ -25,15 +25,9 @@ environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-# env = os.environ.Env()
 env.read_env(os.path.join(BASE_DIR, "bitcoin_technical_indicators/.env"))
-# environ.Env.read_env(os.path.join(BASE_DIR, "/.env"))
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -116,17 +110,7 @@ LOGIN_REDIRECT_URL = "/"
 WSGI_APPLICATION = "bitcoin_technical_indicators.wsgi.application"
 
 
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-# if env("DATABASE_URL"):
 DATABASES = {"default": dj_database_url.parse(env("DATABASE_URL"))}
-# else:
-    # DATABASES = {
-    #     "default": {
-    #         "ENGINE": "django.db.backends.sqlite3",
-    #         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-    #     }
-    # }
 
 
 # Password validation
@@ -173,10 +157,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
-# start here
-print(env("USE_AWS"))
+
 if bool(env("USE_AWS")) == True:
-    print('using aws static resources')
     # Cache control
     AWS_S3_OBJECT_PARAMETERS = {
         "Expires": "Thu, 31 Dec 2099 20:00:00 GMT",
@@ -214,10 +196,6 @@ STRIPE_SECRET_KEY = env("STRIPE_SECRET_KEY")
 STRIPE_WH_SECRET = env("STRIPE_WH_SECRET")
 
 
-# if "DEVELOPMENT" in env.ENVIRON:
-#     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-#     DEFAULT_FROM_EMAIL = "bitcoin-tech-indicators@example.com"
-# else:
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587

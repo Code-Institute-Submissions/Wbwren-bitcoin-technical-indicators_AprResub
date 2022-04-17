@@ -8,22 +8,7 @@
 {% block content %}
 
 
-
-
-
-
 <a href="{% url 'add_price_data' %}">Add New Price<i class="material-icons">add</i></a>
-
-<input type="text" list="coins" />
-    <datalist id="coins">
-      {% for coin in btc %}
-        <option>
-          {{coin.date}}
-        {% endfor %}
-        </option>
-    </datalist>
-    <span id="search-coin-date" href="">Search</span>
-
 
 <table class="table">
     
@@ -43,7 +28,5 @@
   </tr>
   {% endfor %}
 </table>
-
-
    
 {% endblock %}

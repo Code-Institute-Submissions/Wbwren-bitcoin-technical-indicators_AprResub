@@ -1,4 +1,3 @@
-from traceback import print_tb
 from django.shortcuts import get_object_or_404, render
 from .models import Metric
 from plotly.offline import plot

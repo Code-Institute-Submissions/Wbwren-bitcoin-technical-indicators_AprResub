@@ -1,9 +1,6 @@
-import imp
-from django.shortcuts import get_object_or_404, render, redirect
+from django.shortcuts import render, redirect
 import stripe
 from home.context_processor import is_premium_member
-from home.models import Profile
-from django.contrib.auth.models import User
 
 from bitcoin_technical_indicators.settings import STRIPE_SECRET_KEY
 
