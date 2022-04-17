@@ -1,6 +1,5 @@
 
 # Bitcoin Technical Indicators
-![](img\%.png)
 
 ## Project purpose: 
 
@@ -190,18 +189,30 @@ pip install -r requirements.txt
 
 10. Create a new file, called `env.py` and add your environment variables:
 
-import os  
+import os
+
 os.environ.setdefault("DJANGO_SECRET_KEY", "secret key here")
+
 os.environ.setdefault("DATABASE_URL", "secret key here")
+
 os.environ.setdefault("SQLITE_URL", "secret key here")
+
 os.environ.setdefault("CACHE_URL", "secret key here")
+
 os.environ.setdefault("REDIS_URL", "secret key here")
+
 os.environ.setdefault("STRIPE_PUBLIC_KEY", "secret key here")
+
 os.environ.setdefault("STRIPE_SECRET_KEY", "secret key here")
+
 os.environ.setdefault("STRIPE_WH_SECRET", "secret key here")
+
 os.environ.setdefault("DATABASE_URL", "secret key here")
+
 os.environ.setdefault("EMAIL_HOST_USER", "secret key here")
+
 os.environ.setdefault("EMAIL_HOST_PASS", "secret key here")
+
 os.environ.setdefault("DEFAULT_FROM_EMAIL", "secret key here")
 
 11. Go to `settings.py` file and add your environment variables.
@@ -357,4 +368,4 @@ MEDIAFILES_LOCATION = 'media'
 * Click 'Edit Price Data' in the navbar.
 
 # Acknowledgments
-A special thanks to my mentor Brian Macharia for his invaluable guidance throughout this project and the the entire program.
+A huge thanks to my mentor Brian Macharia for his invaluable guidance throughout this project and the entire program.
