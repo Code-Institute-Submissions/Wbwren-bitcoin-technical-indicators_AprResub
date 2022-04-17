@@ -27,8 +27,8 @@
                     {% csrf_token %}
                     {{ form }}
                     <div class="text-right">
-                        <a class="btn btn-outline-black rounded-0" href="{% url 'edit_price' %}">Cancel</a>
-                        <button class="btn btn-black rounded-0" type="submit">Submit Prices</button>
+                        <a href="{% url 'edit_price' %}">Cancel</a>
+                        <button class="btn submit-btn" style="color:#66FCF1" type="submit">Submit Prices</button>
                     </div>
                 </form>
             </div>            

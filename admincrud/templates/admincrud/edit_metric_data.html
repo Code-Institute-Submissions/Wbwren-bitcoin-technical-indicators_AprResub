@@ -27,8 +27,8 @@
                 <form method="POST" action="" class="form mb-2" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    <button class="btn btn-black rounded-0" type="submit">Save Changes</button>
-                    <a class="btn btn-outline-black rounded-0" href="{% url 'edit_metric' %}">Cancel</a>
+                    <button style="color:#66FCF1" class="btn btn-black rounded-0" type="submit">Save Changes</button>
+                    <a style="color:#66FCF1" class="btn btn-outline-black rounded-0" href="{% url 'edit_metric' %}">Cancel</a>
                 </form>
             </div>
         </div>
