@@ -25,8 +25,8 @@ def checkout(request):
                 }
             ],
             mode="payment",
-            success_url="http://127.0.0.1:8000/checkout/checkout_successful",
-            cancel_url="http://127.0.0.1:8000/checkout/checkout_unsuccessful",
+            success_url="https://bitcoin-technical-indicators.herokuapp.com/checkout/checkout_successful",
+            cancel_url="https://bitcoin-technical-indicators.herokuapp.com/checkout/checkout_unsuccessful",
         )
     except:
         checkout_unsuccessful(request)
