@@ -27,9 +27,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 env.read_env(os.path.join(BASE_DIR, "bitcoin_technical_indicators/.env"))
 
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(env('DEBUG'))
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env("DJANGO_SECRET_KEY")
 
