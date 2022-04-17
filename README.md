@@ -71,11 +71,11 @@ __Goal__: Show the user how valuable technical indicators can be when predicatin
 
 
 #### Wireframes
-* [Mobile View](https://github.com/Wbwren/bitcoin-technical-indicators/blob/main/wireframes/mobile-wireframes.png)
+* [Mobile View](https://github.com/Wbwren/bitcoin-technical-indicators/blob/main/blob/master/wireframes/mobile-wireframes.png)
 
-* [Tablet View](https://github.com/Wbwren/bitcoin-technical-indicators/blob/main/wireframes/tablet-wireframes.png)
+* [Tablet View](https://github.com/Wbwren/bitcoin-technical-indicators/blob/main/blob/master/wireframes/tablet-wireframes.png)
 
-* [Desktop View](https://github.com/Wbwren/bitcoin-technical-indicators/blob/main/wireframes/desktop-wireframes.png)
+* [Desktop View](https://github.com/Wbwren/bitcoin-technical-indicators/blob/main/blob/master/wireframes/desktop-wireframes.png)
 
 
 ### Features:
