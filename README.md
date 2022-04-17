@@ -1,5 +1,6 @@
 
 # Bitcoin Technical Indicators
+![](img\%.png)
 
 ## Project purpose: 
 
@@ -19,11 +20,12 @@ The project contains the following apps:
 * Metric Details
     * Renders a Plotly chart with Bitcoins price and selected indicator.
 
-* Edit price data
+* Admin CRUD
     * Administrators can add price data as required (currently this is not automated)
+    * Administrators can edit the details of existing metrics
 
 * Checkout
-    * Users can purcahse lifetime access to the premium indicator
+    * Users can purchase lifetime access to the premium indicator
 
 
 ## UX
@@ -45,9 +47,6 @@ intuitive, so that I can quickly navigate to the metric I wish.
 * As a user, I want to be able to view my chosen metric overlayed onto the chart, so that I can easily comprehend the metric.
 
 
-* As a user, I want to easily be able to access the cart, so that I can access the premium metric.
-
-
 * As an administrator, I want full CRUD functionality of the price data, so that the metrics are kept up to date.
 
 
@@ -63,17 +62,20 @@ __Goal__: Show the user how valuable technical indicators can be when predicatin
 
 ### Design and colors:
 
-#### Fonts:
+#### Colors:
 
-%% was used for the font and %% as the backup font.
+* background: #1F2833;
+* font: #C5C6C7;
+* header: #66FCF1;
+* navbar: #C5C6C7;
 
 
 #### Wireframes
-* [Mobile View](https://github.com/Wbwren/bitcoin-technical-indicators/blob/master/wireframes/mobile-wireframe.png)
+* [Mobile View](https://github.com/Wbwren/bitcoin-technical-indicators/blob/main/wireframes/mobile-wireframes.png)
 
-* [Tablet View](https://github.com/Wbwren/bitcoin-technical-indicators/blob/master/wireframes/tablet-wireframe.png)
+* [Tablet View](https://github.com/Wbwren/bitcoin-technical-indicators/blob/main/wireframes/tablet-wireframes.png)
 
-* [Desktop View](https://github.com/Wbwren/bitcoin-technical-indicators/blob/master/wireframes/desktop-wireframe.png)
+* [Desktop View](https://github.com/Wbwren/bitcoin-technical-indicators/blob/main/wireframes/desktop-wireframes.png)
 
 
 ### Features:
@@ -130,22 +132,16 @@ To display the price charts, the Plotly API for Python was used.
 
 * JavaScript was passed through the linter jshint with no warnings
 ### Functionality test
+
 | Num | Test                                                                         | Action                              | Outcome image                                                                                                                        | Result |
 |-----|------------------------------------------------------------------------------|-------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------|--------|
-| 1   | Navigation bar links work correctly | Click on each nav icon              | [Image of ](https://github.com/Wbwren/%%%.png) | Pass   |
-| 2   | User registraion requires valid data | Attempt to enter invalid data for each field | [Image of ](https://github.com/Wbwren/%%%.png) | Pass   |
-| 3   | User is sent confirmation email after resistration | Register and see if confirmation email is received | [Image of ](https://github.com/Wbwren/%%%.png) | Pass   |
-| 4   | User can login to site after registraition | Register for site and attempt to login | [Image of ](https://github.com/Wbwren/%%%.png) | Pass   |
-| 5   | User can access the metrics page after logging in | Login and click on metrics link in navbar | [Image of ](https://github.com/Wbwren/%%%.png) | Pass   |
-| 6   | User cannot access risk metric prior to purchasing premium access | Login and click on the risk metric as a non premium member | [Image of ](https://github.com/Wbwren/%%%.png) | Pass   |
-| 7   | User is redirected to Stripe affter clicking the checkout button | Login and click on the checkout button | [Image of ](https://github.com/Wbwren/%%%.png) | Pass   |
-| 8   | User can access risk metric after purchasing premium access | Login and click on the risk metric as a premium member | [Image of ](https://github.com/Wbwren/%%%.png) | Pass   |
-| 9   | After logging out user cannot access any metric | Logout and attempt to redirect to metrics page | [Image of form ](https://github.com/Wbwren/%%%.png) | Pass   |
-| 10   | Administrator can view all bitcoin price data in tabular format | Click on edit price data button | [Image of form ](https://github.com/Wbwren/%%%.png) | Pass   |
-| 11   | Administrator can add a new bitcoin price | Click add new price and enter details for the price | [Image of form ](https://github.com/Wbwren/%%%.png) | Pass   |
-| 12   | Administrator can update an existing bitcoin price | Click the edit button beside a price and attemp the change the details | [Image of form ](https://github.com/Wbwren/%%%.png) | Pass   |
-| 13   | Administrator can delete an existing bitcoin price | Click the delete button beside a price and see if it is removed from the table | [Image of form ](https://github.com/Wbwren/%%%.png) | Pass   |
-| 14   | Non administrator cannot access edit price page | Login as a standard user and attempt to redirect to edit price data page | [Image of form ](https://github.com/Wbwren/%%%.png) | Pass   |
+|1|As a user, I want to be able to register to the site, so that I can securely login.|Navigate to registration page and attempt to register with a valid email and password | [Image](https://github.com/Wbwren/bitcoin-technical-indicators) | Pass
+|2|As a user, I want to be able to sign into my account, so that I have access to the metrics available.|Navigate to the login page and attempt to login with the previously registered user|img|Pass|
+|3|As a user, I would like the user experience on the website to be intuitive, so that I can quickly navigate to the metric I wish.|Once logged in, click on the metrics icon in the navbar|img|Pass|
+|4|As a user, I want to be able to view bitcoin price data, so that I can spot trends in the price action.|Select an indicator from the metrics page and view the chart displayed|img|Pass|
+|5|As a user, I want to be able to view my chosen metric overlayed onto the chart, so that I can easily comprehend the metric.|Navigate to a given metric and assess whether the moving average lines are visible|img|Pass|
+|6|As an administrator, I want full CRUD functionality of the price data, so that the metrics are kept up to date.|Login as super user, navigate to the edit price data page and attmept to add, edit and delete a given price|img|Pass|
+|7|As the site owner, I want the checkout functionality to be secure, so that a user cannot access the premium metric without paying.|Loign as non-super user and attempt to access endpoints which are restricted to super users|img|Pass|
 
 <br>
 
@@ -342,7 +338,7 @@ MEDIAFILES_LOCATION = 'media'
 
 # Loading Bitcoin Price Data
 - download bitcoin historical data csv from prefered source (e.g. investing.com)
-- edit csv to include the following cols: id, date, price, open, high, low
+- edit csv to include the following cols: date, price
 - delete header row (just include the data rows)
 - set the date col to the format Y-m-d
 - set all other cols to a type of number (otherwise prices may have ',' symbol which can cause errors)
@@ -351,8 +347,9 @@ MEDIAFILES_LOCATION = 'media'
 - use the following commands to load the data into the postgres database:
     .\sqlite3.exe metrics_bitcoin_price
     .mode csv
-    .import btc_price_data.csv metrics_bitcoin_price;
+    .import <path/to/csv> metrics_bitcoin_price;
 
+    Note if using postgres, the copy command is:
     \copy metrics_bitcoinprice from '<path/to/csv>' csv header;
 
 # Accessing administration CRUD functionality
